@@ -62,29 +62,29 @@ public class Ninja {
 	}
 	
 	//Mueve el ninja
-		public void mover() {
-			if(this.xInicial == 0) {
-				moverDerecha();
-			}else {
-				moverIzquierda();
+	public void mover() {
+		if(this.xInicial == 0) {
+			moverDerecha();
+		}else {
+			moverIzquierda();
 			}
 		}
 		//Mueve el ninja hacia la derecha en caso que corresponda
-		private void moverDerecha() {
-			if(this.x >= 800) {
-				this.x = 0;
-			}
-			this.x = this.x + this.velocidad;
+	private void moverDerecha() {
+		if(this.x >= 800) {
+			this.x = 0;
+		}
+		this.x = this.x + this.velocidad;
 		}
 		//Mueve el ninja hacia la izquierda enl caso que corresponda
-		private void moverIzquierda() {
-			if(this.x <= 0) {
-				this.x = 800;
-			}
-			this.x = this.x - this.velocidad;
+	private void moverIzquierda() {
+		if(this.x <= 0) {
+			this.x = 800;
+		}
+		this.x = this.x - this.velocidad;
 		}
 	    //Dibuja el ninja en este caso color negro
-	 	public void Dibujarse(Entorno entorno) {
-	    	entorno.dibujarRectangulo(this.x, this.y, this.ancho, this.alto,0.0,Color.BLACK);
-		}
+	public void Dibujarse(Entorno entorno) {
+		entorno.dibujarRectangulo(this.x, this.y, this.ancho, this.alto,0.0,Color.BLACK);
+	}
 }
