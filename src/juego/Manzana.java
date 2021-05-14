@@ -12,7 +12,7 @@ public class Manzana {
 	  private double angulo;
 	  private Color color;
 	  
-	 
+	 //Constructor manzana
 	  public Manzana(double x, double y, int alto, int ancho,double angulo, Color color){
 	        this.x = x;
 	        this.y = y;
@@ -22,7 +22,7 @@ public class Manzana {
 	        this.color = color;
 	    }
 	  
-	  //Función que dibuja las manzanas con las casas.
+	  //Función que dibuja las manzanas con las casas
 	  public void dibujar(Entorno e) {
 
 		  e.dibujarRectangulo(x, y, ancho, alto, angulo, color);
