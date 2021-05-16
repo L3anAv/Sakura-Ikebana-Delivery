@@ -9,6 +9,7 @@ public class Juego extends InterfaceJuego {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private Manzana manzana;
+	private Manzana manzanas[];
 	
 	
 	public Juego() {
@@ -20,7 +21,21 @@ public class Juego extends InterfaceJuego {
 		// X - Y - ancho - alto - angulo - color.
 		// x tiene que ser la mitad del ancho del rectangulo.
 		// y tiene que ser la mitad del alto del rectangulo.
-		manzana = new Manzana(90+20,60+20,120,180, 0,Color.BLUE);
+		// new Manzana(90+20,60+20,120,180, 0,Color.BLUE)
+		manzanas = new Manzana[9];
+		// Arriba
+		manzanas[0] = new Manzana(110+20,60+20,120,180, 0,Color.BLUE);
+		manzanas[1] = new Manzana(330+20,60+20,120,180, 0,Color.BLUE);
+		manzanas[2] = new Manzana(550+20,60+20,120,180, 0,Color.BLUE);
+		// Centro
+		manzanas[3] = new Manzana(110+20,260+20,120,180, 0,Color.BLUE);
+		manzanas[4] = new Manzana(330+20,260+20,120,180, 0,Color.BLUE);
+		manzanas[5] = new Manzana(550+20,260+20,120,180, 0,Color.BLUE);
+		// Abajo
+		manzanas[6] = new Manzana(110+20,480+20,120,180, 0,Color.BLUE);
+		manzanas[7] = new Manzana(330+20,480+20,120,180, 0,Color.BLUE);
+		manzanas[8] = new Manzana(550+20,480+20,120,180, 0,Color.BLUE);
+		
 		
 		
 		// Inicia el juego!
@@ -38,9 +53,11 @@ public class Juego extends InterfaceJuego {
 		// Procesamiento de un instante de tiempo
 		// x , y, ancho, alto, angulo, color
 		
-		
-		manzana.dibujar(entorno);
-		
+		for(int i=0;i<manzanas.length;i++) {
+			manzanas[i].dibujar(entorno);
+		};
+		//manzanas[0].dibujar(entorno);
+		//manzanas[1].dibujar(entorno);
 		//entorno.dibujarRectangulo(90+20,60+20, 180, 120, 0,Color.BLUE);
 		
 		

@@ -11,6 +11,7 @@ public class Manzana {
 	  private int ancho; //fijo
 	  private double angulo;
 	  private Color color;
+	  private Casa casas[]; 
 	  
 	 //Constructor manzana
 	  public Manzana(double x, double y, int alto, int ancho,double angulo, Color color){
@@ -20,6 +21,10 @@ public class Manzana {
 	        this.ancho = ancho;
 	        this.angulo = angulo;
 	        this.color = color;
+	        casas = new Casa[3];
+	        casas[0] = new Casa(x+40,y-25,40,40,0,Color.WHITE);
+	        casas[1] = new Casa(x+40,y+35,40,40,0,Color.RED);
+	        casas[2] = new Casa(x-30,y+35,40,40,0,Color.GREEN);
 	    }
 	  
 	  //Función que dibuja las manzanas con las casas
@@ -27,16 +32,24 @@ public class Manzana {
 
 		  e.dibujarRectangulo(x, y, ancho, alto, angulo, color);
 		  
-		  //Array de casas
-		  Casa casas[] ={ new Casa(x+40,y-25,40,40,0,Color.WHITE),
-				  		  new Casa(x+40,y+35,40,40,0,Color.RED),
-				  		  new Casa(x-30,y+35,40,40,0,Color.GREEN)};
-		  
 		  // Dibujar casas en la manzana.
 		  for(int i = 0;i<casas.length;i++) {
 			  casas[i].dibujar(e);
 		  }
 	  }
 	  
+	/*  Metodo para sakura: Determina si sakura esta en la casa objetivo.
+	  
+	public boolean entregoElPedido(Manzana[] manzanas) {
+			for (int i = 0; i < manzanas.length; i++) {
+				for (int j = 0; j < manzanas[i].getCasas().length; j++) {
+	            
+					if(manzanas[i].getCasas()[j].isEsObjetivo() && this.llegoACasa(manzanas[i].getCasas()[j])) {
+	                	 return true;
+	                 }
+				}
+			}
+		}
+	  */
 	}
 
