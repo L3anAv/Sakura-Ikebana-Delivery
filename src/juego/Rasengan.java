@@ -9,13 +9,15 @@ public class Rasengan {
 	private double y;
 	private double radio;
 	private double velocidad;
+	private int direccion;
 	
-	public Rasengan(double x, double y, double radio, double velocidad) {
+	public Rasengan(double x, double y,int dir) {
 		super();
 		this.x = x;
 		this.y = y;
-		this.radio = radio;
-		this.velocidad = velocidad;
+		this.radio = 20;
+		this.velocidad = 5;
+		this.direccion = dir;
 	}
 	
 	public double getX() {
@@ -43,7 +45,12 @@ public class Rasengan {
 	}
 	//Movimiento del Rasengan
 	 public void mover() {
-    	this.y = this.y - this.velocidad ;
+    	if(this.direccion == 0) {
+    		this.x+=this.velocidad;
+    	}if(this.direccion == 4) {
+    		this.y+=this.velocidad;
+    	}
+    	
     }
 	//Dibuja Rasengan
 	public void Dibujar(Entorno entorno) {

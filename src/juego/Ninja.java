@@ -13,7 +13,7 @@ public class Ninja {
     private double alto;
     private double ancho;
     private double velocidad;
-    private double xInicial;
+    private int direccion;
     
     
     public double getAlto() {
@@ -32,13 +32,13 @@ public class Ninja {
 		this.ancho = ancho;
 	}
 	
-	Ninja(double x, double y, double ancho, double alto, double velocidad){
+	Ninja(double x, double y, double ancho, double alto, double velocidad,int dir){
     	this.x = x;
     	this.y = y;
     	this.alto = alto;
     	this.ancho = ancho;
     	this.velocidad = velocidad;
-    	this.xInicial = x;
+    	this.direccion = dir;
     }
 	
 	public double getVelocidad() {
@@ -62,29 +62,46 @@ public class Ninja {
 	}
 	
 	//Mueve el ninja
-	public void mover() {
-		if(this.xInicial == 0) {
-			moverDerecha();
-		}else {
-			moverIzquierda();
+		public void mover() {
+			if (this.direccion == 0) {
+				moverDerecha();
+			} else if (direccion == 1) {
+				moverIzquierda();
+			}if (this.direccion == 2) {
+				moverArriba();
+			} else if (direccion == 3) {
+				moverAbajo();
 			}
+			
 		}
 		//Mueve el ninja hacia la derecha en caso que corresponda
-	private void moverDerecha() {
-		if(this.x >= 800) {
-			this.x = 0;
-		}
-		this.x = this.x + this.velocidad;
+		private void moverDerecha() {
+			if(this.x >= 800) {
+				this.x = 0;
+			}
+			this.x = this.x + this.velocidad;
 		}
 		//Mueve el ninja hacia la izquierda enl caso que corresponda
-	private void moverIzquierda() {
-		if(this.x <= 0) {
-			this.x = 800;
+		private void moverIzquierda() {
+			if(this.x <= 0) {
+				this.x = 800;
+			}
+			this.x = this.x - this.velocidad;
 		}
-		this.x = this.x - this.velocidad;
+		private void moverArriba() {
+			if(this.y >= 800) {
+				this.y = 0;
+			}
+			this.y = this.y + this.velocidad;
+		}
+		private void moverAbajo() {
+			if(this.y <= 800) {
+				this.y = 0;
+			}
+			this.y = this.y + this.velocidad;
 		}
 	    //Dibuja el ninja en este caso color negro
-	public void Dibujarse(Entorno entorno) {
-		entorno.dibujarRectangulo(this.x, this.y, this.ancho, this.alto,0.0,Color.BLACK);
-	}
+	 	public void Dibujarse(Entorno entorno) {
+	    	entorno.dibujarRectangulo(this.x, this.y, this.ancho, this.alto,0.0,Color.BLACK);
+		}
 }
