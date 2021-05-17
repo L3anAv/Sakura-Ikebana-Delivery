@@ -11,7 +11,7 @@ public class Juego extends InterfaceJuego {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private Sakura sakura;
-	private Ramo ramo;   
+//	private Ramo ramo;   
 	private Manzana manzana;
 	private Manzana manzanas[];
 
@@ -19,8 +19,8 @@ public class Juego extends InterfaceJuego {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N° 6 - A - A - A - V0.01", 800, 600);
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N - Apellido1 - Apellido2 -Apellido3 - V0.01", 800, 600);
-		ramo= new Ramo(500,150,50,50,Color.blue,2);		
-		sakura = new Sakura(entorno.ancho()/2,entorno.alto()/2,50,50,Color.white,2);
+//		ramo= new Ramo(500,150,50,50,Color.blue,2);		
+		sakura = new Sakura(1,1,10,10,Color.white,2);
 		
 		// Inicializar lo que haga falta para el juego.
 		
@@ -61,9 +61,8 @@ public class Juego extends InterfaceJuego {
 
 		// ...
 		sakura.dibujar(entorno);
-		sakura.movimiento(entorno,ramo);
-		ramo.dibujar(entorno);
-
+		sakura.movimientoRango(entorno,manzanas[0],manzanas[1],manzanas[2],manzanas[3],
+				manzanas[4],manzanas[5],manzanas[6],manzanas[7], manzanas[8]);
 
 		// x , y, ancho, alto, angulo, color
 		

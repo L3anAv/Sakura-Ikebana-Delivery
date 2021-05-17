@@ -37,6 +37,22 @@ public class Manzana {
 			  casas[i].dibujar(e);
 		  }
 	  }
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public int getAlto() {
+		return alto;
+	}
+
+	public int getAncho() {
+		return ancho;
+	}
 	  
 	/*  Metodo para sakura: Determina si sakura esta en la casa objetivo.
 	  
