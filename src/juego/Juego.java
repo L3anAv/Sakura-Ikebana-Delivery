@@ -15,15 +15,15 @@ public class Juego extends InterfaceJuego {
 
 	public Juego() {
 		// Inicializa el objeto entorno
-		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N° 6 - A - A - A - V0.01", 800, 600);
-		ramo= new Ramo(500,150,50,50,Color.blue,2);		
-		sakura = new Sakura(entorno.ancho()/2,entorno.alto()/2,50,50,Color.white,2);
 		
-		// Inicializar lo que haga falta para el juego.
-		// X - Y - ancho - alto - angulo - color.
-		// x tiene que ser la mitad del ancho del rectangulo.
-		// y tiene que ser la mitad del alto del rectangulo.
+		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N° 6 - A - A - A - V0.01", 800, 600);
+		// Ramo de flores
+		ramo= new Ramo(500,150,50,50,Color.blue,2);
+		// Sakura
+		sakura = new Sakura(entorno.ancho()/2,entorno.alto()/2,50,50,Color.white,2);
+	
 		manzanas = new Manzana[12];
+		
 		// Arriba
 		manzanas[0] = new Manzana(70,60+40,120,180, 0,Color.BLUE);
 		manzanas[1] = new Manzana(70+220,60+40,120,180, 0,Color.BLUE);
@@ -35,15 +35,13 @@ public class Juego extends InterfaceJuego {
 		manzanas[5] = new Manzana(70+220,60+230,120,180, 0,Color.BLUE);
 		manzanas[6] = new Manzana(70+440,60+230,120,180, 0,Color.BLUE);
 		manzanas[7] = new Manzana(70+658,60+230,120,180, 0,Color.BLUE);
+		
 		// Abajo
 		manzanas[8] = new Manzana(70,60+430,120,180, 0,Color.BLUE);
 		manzanas[9] = new Manzana(70+220,60+430,120,180, 0,Color.BLUE);
 		manzanas[10] = new Manzana(70+440,60+430,120,180, 0,Color.BLUE);
 		manzanas[11] = new Manzana(70+658,60+430,120,180, 0,Color.BLUE);
 		
-		
-		
-
 		// Inicia el juego!
 		this.entorno.iniciar();
 	}
