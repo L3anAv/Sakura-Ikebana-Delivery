@@ -7,8 +7,8 @@ import entorno.Entorno;
 public class Casa {
 	private double x;
 	  private double y;
-	  private int alto; //fijo
-	  private int ancho; //fijo
+	  private int alto; 
+	  private int ancho; 
 	  private double angulo;
 	  private Color color;
 	

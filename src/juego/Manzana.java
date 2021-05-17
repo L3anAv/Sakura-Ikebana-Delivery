@@ -7,8 +7,8 @@ import entorno.Entorno;
 public class Manzana {
 	  private double x;
 	  private double y;
-	  private int alto; //fijo
-	  private int ancho; //fijo
+	  private int alto; 
+	  private int ancho; 
 	  private double angulo;
 	  private Color color;
 	  private Casa casas[]; 
@@ -54,18 +54,6 @@ public class Manzana {
 		return ancho;
 	}
 	  
-	/*  Metodo para sakura: Determina si sakura esta en la casa objetivo.
-	  
-	public boolean entregoElPedido(Manzana[] manzanas) {
-			for (int i = 0; i < manzanas.length; i++) {
-				for (int j = 0; j < manzanas[i].getCasas().length; j++) {
-	            
-					if(manzanas[i].getCasas()[j].isEsObjetivo() && this.llegoACasa(manzanas[i].getCasas()[j])) {
-	                	 return true;
-	                 }
-				}
-			}
-		}
-	  */
+	
 	}
 

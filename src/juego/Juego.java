@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import entorno.Entorno;
 import entorno.InterfaceJuego;
-import java.awt.Color;
 
 public class Juego extends InterfaceJuego {
 
@@ -13,34 +12,40 @@ public class Juego extends InterfaceJuego {
 	private Sakura sakura;
 //	private Ramo ramo;   
 	private Manzana manzana;
+	private Ramo ramo;
 	private Manzana manzanas[];
-
 	public Juego() {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N° 6 - A - A - A - V0.01", 800, 600);
+
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N - Apellido1 - Apellido2 -Apellido3 - V0.01", 800, 600);
 //		ramo= new Ramo(500,150,50,50,Color.blue,2);		
 		sakura = new Sakura(1,1,10,10,Color.white,2);
+		ramo= new Ramo(500,150,50,50,Color.blue,2);
+		
+
 		
 		// Inicializar lo que haga falta para el juego.
-		
 		// X - Y - ancho - alto - angulo - color.
 		// x tiene que ser la mitad del ancho del rectangulo.
 		// y tiene que ser la mitad del alto del rectangulo.
-		// new Manzana(90+20,60+20,120,180, 0,Color.BLUE)
-		manzanas = new Manzana[9];
+		manzanas = new Manzana[12];
 		// Arriba
-		manzanas[0] = new Manzana(110+20,60+20,120,180, 0,Color.BLUE);
-		manzanas[1] = new Manzana(330+20,60+20,120,180, 0,Color.BLUE);
-		manzanas[2] = new Manzana(550+20,60+20,120,180, 0,Color.BLUE);
+		manzanas[0] = new Manzana(70,60+40,120,180, 0,Color.BLUE);
+		manzanas[1] = new Manzana(70+220,60+40,120,180, 0,Color.BLUE);
+		manzanas[2] = new Manzana(70+440,60+40,120,180, 0,Color.BLUE);
+		manzanas[3] = new Manzana(70+658,60+40,120,180, 0,Color.BLUE);
+		
 		// Centro
-		manzanas[3] = new Manzana(110+20,260+20,120,180, 0,Color.BLUE);
-		manzanas[4] = new Manzana(330+20,260+20,120,180, 0,Color.BLUE);
-		manzanas[5] = new Manzana(550+20,260+20,120,180, 0,Color.BLUE);
+		manzanas[4] = new Manzana(70,60+230,120,180, 0,Color.BLUE);
+		manzanas[5] = new Manzana(70+220,60+230,120,180, 0,Color.BLUE);
+		manzanas[6] = new Manzana(70+440,60+230,120,180, 0,Color.BLUE);
+		manzanas[7] = new Manzana(70+658,60+230,120,180, 0,Color.BLUE);
 		// Abajo
-		manzanas[6] = new Manzana(110+20,480+20,120,180, 0,Color.BLUE);
-		manzanas[7] = new Manzana(330+20,480+20,120,180, 0,Color.BLUE);
-		manzanas[8] = new Manzana(550+20,480+20,120,180, 0,Color.BLUE);
+		manzanas[8] = new Manzana(70,60+430,120,180, 0,Color.BLUE);
+		manzanas[9] = new Manzana(70+220,60+430,120,180, 0,Color.BLUE);
+		manzanas[10] = new Manzana(70+440,60+430,120,180, 0,Color.BLUE);
+		manzanas[11] = new Manzana(70+658,60+430,120,180, 0,Color.BLUE);
 		
 		
 		
@@ -55,6 +60,7 @@ public class Juego extends InterfaceJuego {
 	 * actualizar el estado interno del juego para simular el paso del tiempo 
 	 * (ver el enunciado del TP para mayor detalle).
 	 */
+	
 	public void tick() {
 		
 		// Procesamiento de un instante de tiempo
@@ -62,20 +68,15 @@ public class Juego extends InterfaceJuego {
 		// ...
 		sakura.dibujar(entorno);
 		sakura.movimientoRango(entorno,manzanas[0],manzanas[1],manzanas[2],manzanas[3],
-				manzanas[4],manzanas[5],manzanas[6],manzanas[7], manzanas[8]);
+				manzanas[4],manzanas[5],manzanas[6],manzanas[7], manzanas[8], manzanas[9],
+				manzanas[10], manzanas[11]);
 
 		// x , y, ancho, alto, angulo, color
 		
 		for(int i=0;i<manzanas.length;i++) {
 			manzanas[i].dibujar(entorno);
 		};
-		//manzanas[0].dibujar(entorno);
-		//manzanas[1].dibujar(entorno);
-		//entorno.dibujarRectangulo(90+20,60+20, 180, 120, 0,Color.BLUE);
 		
-
-		
-
 	}
 	
 	@SuppressWarnings("unused")
