@@ -8,7 +8,6 @@ public class Juego extends InterfaceJuego {
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
-	private Manzana manzana;
 	private Manzana manzanas[];
 	
 	
@@ -17,24 +16,26 @@ public class Juego extends InterfaceJuego {
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N° 6 - A - A - A - V0.01", 800, 600);
 		
 		// Inicializar lo que haga falta para el juego.
-		
 		// X - Y - ancho - alto - angulo - color.
 		// x tiene que ser la mitad del ancho del rectangulo.
 		// y tiene que ser la mitad del alto del rectangulo.
-		// new Manzana(90+20,60+20,120,180, 0,Color.BLUE)
-		manzanas = new Manzana[9];
+		manzanas = new Manzana[12];
 		// Arriba
-		manzanas[0] = new Manzana(110+20,60+20,120,180, 0,Color.BLUE);
-		manzanas[1] = new Manzana(330+20,60+20,120,180, 0,Color.BLUE);
-		manzanas[2] = new Manzana(550+20,60+20,120,180, 0,Color.BLUE);
+		manzanas[0] = new Manzana(70,60+40,120,180, 0,Color.BLUE);
+		manzanas[1] = new Manzana(70+220,60+40,120,180, 0,Color.BLUE);
+		manzanas[2] = new Manzana(70+440,60+40,120,180, 0,Color.BLUE);
+		manzanas[3] = new Manzana(70+658,60+40,120,180, 0,Color.BLUE);
+		
 		// Centro
-		manzanas[3] = new Manzana(110+20,260+20,120,180, 0,Color.BLUE);
-		manzanas[4] = new Manzana(330+20,260+20,120,180, 0,Color.BLUE);
-		manzanas[5] = new Manzana(550+20,260+20,120,180, 0,Color.BLUE);
+		manzanas[4] = new Manzana(70,60+230,120,180, 0,Color.BLUE);
+		manzanas[5] = new Manzana(70+220,60+230,120,180, 0,Color.BLUE);
+		manzanas[6] = new Manzana(70+440,60+230,120,180, 0,Color.BLUE);
+		manzanas[7] = new Manzana(70+658,60+230,120,180, 0,Color.BLUE);
 		// Abajo
-		manzanas[6] = new Manzana(110+20,480+20,120,180, 0,Color.BLUE);
-		manzanas[7] = new Manzana(330+20,480+20,120,180, 0,Color.BLUE);
-		manzanas[8] = new Manzana(550+20,480+20,120,180, 0,Color.BLUE);
+		manzanas[8] = new Manzana(70,60+430,120,180, 0,Color.BLUE);
+		manzanas[9] = new Manzana(70+220,60+430,120,180, 0,Color.BLUE);
+		manzanas[10] = new Manzana(70+440,60+430,120,180, 0,Color.BLUE);
+		manzanas[11] = new Manzana(70+658,60+430,120,180, 0,Color.BLUE);
 		
 		
 		
@@ -48,6 +49,7 @@ public class Juego extends InterfaceJuego {
 	 * actualizar el estado interno del juego para simular el paso del tiempo 
 	 * (ver el enunciado del TP para mayor detalle).
 	 */
+	
 	public void tick() {
 		
 		// Procesamiento de un instante de tiempo
@@ -56,9 +58,7 @@ public class Juego extends InterfaceJuego {
 		for(int i=0;i<manzanas.length;i++) {
 			manzanas[i].dibujar(entorno);
 		};
-		//manzanas[0].dibujar(entorno);
-		//manzanas[1].dibujar(entorno);
-		//entorno.dibujarRectangulo(90+20,60+20, 180, 120, 0,Color.BLUE);
+		
 		
 		
 	}
