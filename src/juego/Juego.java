@@ -14,13 +14,14 @@ public class Juego extends InterfaceJuego {
 	private Manzana manzana;
 	private Ramo ramo;
 	private Manzana manzanas[];
+	private Ninja ninjas[];
 	public Juego() {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N° 6 - A - A - A - V0.01", 800, 600);
 
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N - Apellido1 - Apellido2 -Apellido3 - V0.01", 800, 600);
 //		ramo= new Ramo(500,150,50,50,Color.blue,2);		
-		sakura = new Sakura(1,1,10,10,Color.white,2);
+		sakura = new Sakura(20*20,20*10,10,10,Color.white,2);
 		ramo= new Ramo(500,150,50,50,Color.blue,2);
 		
 
@@ -48,8 +49,21 @@ public class Juego extends InterfaceJuego {
 		manzanas[11] = new Manzana(70+658,60+430,120,180, 0,Color.BLUE);
 		
 		
+		//Ninjas y su posicion
+		ninjas = new Ninja[6];
 		
-
+		ninjas[0] = new Ninja(3, 20, 10, 10, 2, 1);//ninja calle 1
+		
+		ninjas[1] = new Ninja(800, 20*10, 10, 10,2,2 );//ninja calle 2
+		
+		ninjas[2] = new Ninja(3, 20*20, 10, 10, 2, 1);//ninja calle 3
+		
+		ninjas[3] = new Ninja(40*10, 10, 10, 10, 2,3 );//ninja calle 1,entre manzana 2 y 3
+		
+		ninjas[4] = new Ninja(18*10, 20*30, 10, 10, 2,4 );//ninja calle 4,entre manzana 1 y 2
+		
+		ninjas[5] = new Ninja(62*10, 20*30, 10, 10, 2,4 );//ninja calle 4,entre manzana 3 y 4
+		
 		// Inicia el juego!
 		this.entorno.iniciar();
 	}
@@ -81,6 +95,17 @@ public class Juego extends InterfaceJuego {
 		for(int i=0;i<manzanas.length;i++) {
 			manzanas[i].dibujar(entorno);
 		};
+		for(int i=0;i<ninjas.length;i++) {
+			ninjas[i].Dibujarse(entorno);
+		};
+		
+		for (int i = 0; i < ninjas.length; i++) {
+			if(ninjas[i] != null)
+			{
+			
+			ninjas[i].mover();
+			}
+		}
 		
 	}
 	

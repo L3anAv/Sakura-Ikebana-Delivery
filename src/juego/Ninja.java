@@ -63,13 +63,13 @@ public class Ninja {
 	
 	//Mueve el ninja
 		public void mover() {
-			if (this.direccion == 0) {
+			if (this.direccion == 1) {
 				moverDerecha();
-			} else if (direccion == 1) {
+			} else if (this.direccion ==2) {
 				moverIzquierda();
-			}if (this.direccion == 2) {
+			}if (this.direccion ==3) {
 				moverArriba();
-			} else if (direccion == 3) {
+			} else if (this.direccion == 4) {
 				moverAbajo();
 			}
 			
@@ -95,13 +95,13 @@ public class Ninja {
 			this.y = this.y + this.velocidad;
 		}
 		private void moverAbajo() {
-			if(this.y <= 800) {
-				this.y = 0;
+			if(this.y <= 0) {
+				this.y = 800;
 			}
-			this.y = this.y + this.velocidad;
+			this.y = this.y - this.velocidad;
 		}
 	    //Dibuja el ninja en este caso color negro
 	 	public void Dibujarse(Entorno entorno) {
-	    	entorno.dibujarRectangulo(this.x, this.y, this.ancho, this.alto,0.0,Color.BLACK);
+	    	entorno.dibujarRectangulo(this.x, this.y, this.ancho, this.alto,0.0,Color.RED);
 		}
 }
