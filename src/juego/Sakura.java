@@ -30,6 +30,7 @@ public class Sakura {
 		} if (movimientoRangoManzanas(a,b,c,d,e,f,g,h,i,j,k,l)) {
 			this.x-=this.movimiento;
 		}
+		
 	}
 	public void moverIzquierda(Manzana a,Manzana b, Manzana c, Manzana d, Manzana e, Manzana f, Manzana g,Manzana h, Manzana i,
 			Manzana j, Manzana k,Manzana l) {                              
