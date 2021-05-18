@@ -54,6 +54,10 @@ public class Juego extends InterfaceJuego {
 		this.entorno.iniciar();
 	}
 
+	public Manzana[] getManzanas() {
+		return manzanas;
+	}
+
 	/**
 	 * Durante el juego, el método tick() será ejecutado en cada instante y 
 	 * por lo tanto es el método más importante de esta clase. Aquí se debe 
@@ -66,10 +70,11 @@ public class Juego extends InterfaceJuego {
 		// Procesamiento de un instante de tiempo
 
 		// ...
+	    
 		sakura.dibujar(entorno);
-		sakura.movimientoRango(entorno,manzanas[0],manzanas[1],manzanas[2],manzanas[3],
-				manzanas[4],manzanas[5],manzanas[6],manzanas[7], manzanas[8], manzanas[9],
-				manzanas[10], manzanas[11]);
+		
+		sakura.movimientoRango(entorno,manzanas);
+	
 
 		// x , y, ancho, alto, angulo, color
 		
@@ -85,3 +90,5 @@ public class Juego extends InterfaceJuego {
 	}
 
 }
+
+//

@@ -12,7 +12,6 @@ public class Rasengan {
 	private int direccion;
 	
 	public Rasengan(double x, double y,int dir) {
-		super();
 		this.x = x;
 		this.y = y;
 		this.radio = 20;

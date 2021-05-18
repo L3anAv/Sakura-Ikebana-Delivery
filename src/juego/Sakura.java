@@ -11,6 +11,7 @@ public class Sakura {
 	private double alto;
 	private Color color;
 	private double movimiento;
+	private int direccion; 
 	public Sakura(double x, double y, double ancho, double alto, Color color, double movimiento) {
 		this.x = x;
 		this.y = y;
@@ -23,48 +24,47 @@ public class Sakura {
 	public void dibujar (Entorno e) {
 		e.dibujarRectangulo(x, y, ancho, alto, 0, color);
 	}
-	public void moverDerecha(Entorno x,Manzana a,Manzana b, Manzana c, Manzana d, Manzana e, Manzana f, Manzana g,Manzana h, Manzana i
-			,Manzana j, Manzana k,Manzana l) {
+	public void moverDerecha(Entorno x,Manzana[] manzanas) {
 		if (!(this.x+this.ancho/2==x.ancho())) {
 			  this.x+=this.movimiento;			  
-		} if (movimientoRangoManzanas(a,b,c,d,e,f,g,h,i,j,k,l)) {
-			this.x-=this.movimiento;
+		} if (movimientoRangoManzanas(manzanas)) {
+			this.x-=this.movimiento;	
 		}
-	}
-	public void moverIzquierda(Manzana a,Manzana b, Manzana c, Manzana d, Manzana e, Manzana f, Manzana g,Manzana h, Manzana i,
-			Manzana j, Manzana k,Manzana l) {                              
+		direccion=1; // 1=derecha 
+		}
+	public void moverIzquierda(Manzana[] manzanas) {                              
 		if (!(this.x-this.ancho/2<=0)) {
 			this.x-=this.movimiento;
-		}if (movimientoRangoManzanas(a,b,c,d,e,f,g,h,i,j,k,l)) {
+		}if (movimientoRangoManzanas(manzanas)) {
 			this.x+=this.movimiento;
-		}		
-		}	
-	public void moverArriba(Manzana a,Manzana b, Manzana c, Manzana d, Manzana e, Manzana f, Manzana g,Manzana h, Manzana i,
-			Manzana j, Manzana k,Manzana l) {
+		}
+		direccion=2; // 2 =izquierda
+		}
+	public void moverArriba(Manzana[] manzanas) {
 		if (!(this.y-this.alto/2<0) ) {
 			this.y-=this.movimiento;
-		}if (movimientoRangoManzanas(a,b,c,d,e,f,g,h,i,j,k,l)) {
+		}if (movimientoRangoManzanas(manzanas)) {
 			this.y+=this.movimiento;
-		}	
+		}
+		direccion=3;   // 3=Arriba
 	}
-	public void moverAbajo(Entorno x, Manzana a,Manzana b, Manzana c, Manzana d, Manzana e, Manzana f, Manzana g,Manzana h, Manzana i,
-			Manzana j, Manzana k,Manzana l) {
+	public void moverAbajo(Entorno x, Manzana[] manzanas) {
 		if (!(this.y+this.alto/2>x.alto())) {
 			  this.y+=this.movimiento;		
-		}if (movimientoRangoManzanas(a,b,c,d,e,f,g,h,i,j,k,l)) {
+		}if (movimientoRangoManzanas(manzanas)) {
 			this.y-=this.movimiento;
-		}		
-	}		
-	public void movimientoRango(Entorno entorno,Manzana a,Manzana b,Manzana c, Manzana d, Manzana e, Manzana f, Manzana g, Manzana h, Manzana i,Manzana j, Manzana k,
-			Manzana l) {		
+		}
+		direccion=4; // 4= abajo
+	}
+	public void movimientoRango(Entorno entorno,Manzana[] manzanas) {		
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA)) {
-			moverDerecha(entorno,a,b,c,d,e,f,g,h,i,j,k,l);	
+			moverDerecha(entorno, manzanas);	
 		}else if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA))  {
-			moverIzquierda(a,b,c,d,e,f,g,h,i,j,k,l);
+			moverIzquierda(manzanas);
 		}else if (entorno.estaPresionada(entorno.TECLA_ABAJO)){
-			moverAbajo(entorno,a,b,c,d,e,f,g,h,i,j,k,l);
+			moverAbajo(entorno,manzanas);
 		}else if (entorno.estaPresionada(entorno.TECLA_ARRIBA)){
-			moverArriba(a,b,c,d,e,f,g,h,i,j,k,l);	
+			moverArriba(manzanas);	
 		}
 	}
 	public static boolean colision(double x1, double y1, double anchoX, double altoX,double x2, double y2,double altoY, double anchoY) {    //------ pensado para dos cuadrados-------
@@ -82,27 +82,22 @@ public class Sakura {
 				
 		return l;
 	}
-	public boolean movimientoRangoManzanas(Manzana a,Manzana b, Manzana c, Manzana d, Manzana e, Manzana f, Manzana g,Manzana h, Manzana i, Manzana j, Manzana k,
-			Manzana l) {
-		if(colision(this.x+85,this.y+55,this.ancho,this.alto,a.getX(),a.getY(),a.getAlto(),a.getAncho())==true ||
-		colision(this.x+85,this.y+55,this.ancho,this.alto,b.getX(),b.getY(),b.getAlto(),b.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,c.getX(),c.getY(),c.getAlto(),c.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,d.getX(),d.getY(),d.getAlto(),d.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,e.getX(),e.getY(),e.getAlto(),e.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,f.getX(),f.getY(),f.getAlto(),f.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,g.getX(),g.getY(),g.getAlto(),g.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,h.getX(),h.getY(),h.getAlto(),h.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,i.getX(),i.getY(),i.getAlto(),i.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,j.getX(),j.getY(),j.getAlto(),j.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,k.getX(),k.getY(),k.getAlto(),k.getAncho())==true
-		||colision(this.x+85,this.y+55,this.ancho,this.alto,l.getX(),l.getY(),l.getAlto(),l.getAncho())==true
-		) {
-			return true;
-		}else { return false;
-			
+	public boolean movimientoRangoManzanas(Manzana[] manzanas) {
+		int cont=0;
+		for (int i=0 ; i<manzanas.length;i++) {
+			if (colision(this.x+85,this.y+55,this.ancho,this.alto,manzanas[i].getX(),manzanas[i].getY(),manzanas[i].getAlto(),manzanas[i].getAncho())==true) { //modificar x e y si hay problemas de rango...
+				cont+=1;
+			}else {
+				cont=cont+0;
+			}
+			}
+		if (cont>0) {
+			return true; 
+		}else {
+			return false;
 		}
-		
-	}
+
+       }
 	public double getX() {
 		return this.x;
 	}

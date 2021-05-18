@@ -36,6 +36,7 @@ public class Manzana {
 		  for(int i = 0;i<casas.length;i++) {
 			  casas[i].dibujar(e);
 		  }
+		  
 	  }
 
 	public double getX() {
