@@ -15,6 +15,7 @@ public class Juego extends InterfaceJuego {
 	private Ramo ramo;
 	private Manzana manzanas[];
 	private Ninja ninjas[];
+	private Rasengan rasengan[];
 	public Juego() {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N° 6 - A - A - A - V0.01", 800, 600);
@@ -23,7 +24,7 @@ public class Juego extends InterfaceJuego {
 //		ramo= new Ramo(500,150,50,50,Color.blue,2);		
 		sakura = new Sakura(20*20,20*10,10,10,Color.white,2);
 		ramo= new Ramo(500,150,50,50,Color.blue,2);
-		
+		rasengan = new Rasengan[3];
 
 		
 		// Inicializar lo que haga falta para el juego.
@@ -106,6 +107,45 @@ public class Juego extends InterfaceJuego {
 			ninjas[i].mover();
 			}
 		}
+		
+		//Dispara el kamehameha enl caso de tocar la barra espaciadora solo 3 veces
+		if (this.entorno.sePresiono(this.entorno.TECLA_ESPACIO)) {
+
+			boolean dispararRasengan = false;
+			for (int i = 0; i < rasengan.length && !dispararRasengan; i++) {
+				if (rasengan[i] == null) 
+				{
+					rasengan[i] = this.sakura.disparar();
+					dispararRasengan = true;
+				}
+			}
+		}
+		//dibuja el kamehameha y desaparece segun los limites en X e Y
+		for (int i = 0; i < rasengan.length; i++) {
+			if (rasengan[i] != null) {
+				rasengan[i].mover();
+				rasengan[i].Dibujar(entorno);
+				
+				if(rasengan[i].getX() <= 0 ) 
+				{
+					rasengan[i] = null;
+				}
+				if(rasengan[i].getX()  >= 800) 
+				{
+					rasengan[i] = null;
+				}
+				if(rasengan[i].getY() <= 0 ) 
+				{
+					rasengan[i] = null;
+				}
+				if(rasengan[i].getY()  >= 800) 
+				{
+					rasengan[i] = null;
+				}
+			}
+		}
+		
+		
 		
 	}
 	

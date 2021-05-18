@@ -12,6 +12,7 @@ public class Sakura {
 	private Color color;
 	private double movimiento;
 	private int direccion; 
+
 	public Sakura(double x, double y, double ancho, double alto, Color color, double movimiento) {
 		this.x = x;
 		this.y = y;
@@ -21,6 +22,7 @@ public class Sakura {
 		this.movimiento = movimiento;
 		
 	}
+	
 	public void dibujar (Entorno e) {
 		e.dibujarRectangulo(x, y, ancho, alto, 0, color);
 	}
@@ -114,6 +116,11 @@ public class Sakura {
 	}
 	public double getMovimiento() {
 		return this.movimiento;
+	}
+	
+	
+	public Rasengan disparar() {
+		return new Rasengan(this.x,this.y,direccion);
 	}
 	}
 	
