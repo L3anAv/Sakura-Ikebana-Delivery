@@ -130,15 +130,15 @@ public class Juego extends InterfaceJuego {
 				{
 					rasengan[i] = null;
 				}
-				if(rasengan[i].getX()  >= 800) 
+				else if(rasengan[i].getX()  >= 800) 
 				{
 					rasengan[i] = null;
 				}
-				if(rasengan[i].getY() <= 0 ) 
+				else if(rasengan[i].getY() <= 0 ) 
 				{
 					rasengan[i] = null;
 				}
-				if(rasengan[i].getY()  >= 800) 
+				else if(rasengan[i].getY()  >= 800) 
 				{
 					rasengan[i] = null;
 				}

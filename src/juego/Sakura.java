@@ -122,6 +122,7 @@ public class Sakura {
 	public Rasengan disparar() {
 		return new Rasengan(this.x,this.y,direccion);
 	}
+	
 	}
 	
 	

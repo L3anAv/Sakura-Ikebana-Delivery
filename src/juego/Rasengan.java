@@ -86,4 +86,5 @@ public class Rasengan {
 	public void Dibujar(Entorno entorno) {
 			entorno.dibujarCirculo(x, y, radio, Color.WHITE);
 		}
+	
 }
