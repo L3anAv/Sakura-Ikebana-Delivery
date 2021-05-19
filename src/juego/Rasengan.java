@@ -43,6 +43,7 @@ public class Rasengan {
 	public void setRadio(double radio) {
 		this.radio = radio;
 	}
+	
 	//Movimiento del Rasengan
 	 public void mover() {
     	if(this.direccion == 0) {
