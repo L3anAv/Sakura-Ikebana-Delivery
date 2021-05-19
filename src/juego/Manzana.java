@@ -7,6 +7,7 @@ import entorno.Herramientas;
 
 
 public class Manzana {
+	
 	  private double x;
 	  private double y;
 	  private int alto; 
@@ -29,6 +30,7 @@ public class Manzana {
 	        this.color = color;
 	        
 	        casas = new Casa[5];
+	        
 	        /*
 	        casas[0] = new Casa(x+40,y-25,40,40,0,Color.BLUE,false);
 	        casas[1] = new Casa(x+40,y+35,40,40,0,Color.RED,false);
@@ -62,6 +64,7 @@ public class Manzana {
 			  }	  
 		  }
 		  
+
 	  }
 	  
 	  public void dibujarEsq(Entorno e) {
