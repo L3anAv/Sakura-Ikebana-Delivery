@@ -13,9 +13,11 @@ public class Juego extends InterfaceJuego {
 //	private Ramo ramo;
 	private Manzana manzanas[];
 	private Color color;
+	private Casa casaObj;
 	private Ninja ninjas[];
 	private Rasengan rasengan[];
-
+	private int nm;
+	
 	public Juego() {
 
 		//Inicializaciones
@@ -36,31 +38,38 @@ public class Juego extends InterfaceJuego {
 		manzanas[1] = new Manzana(70+220,60+40,120,180, 0,color);
 		manzanas[2] = new Manzana(70+440,60+40,120,180, 0,color);
 		manzanas[3] = new Manzana(70+658,60+40,120,180, 0,color);
+		
 		// Centro
 		manzanas[4] = new Manzana(70,60+230,120,180, 0,color);
 		manzanas[5] = new Manzana(70+220,60+230,120,180, 0,color);
 		manzanas[6] = new Manzana(70+440,60+230,120,180, 0,color);
 		manzanas[7] = new Manzana(70+658,60+230,120,180, 0,color);
+		
 		// Abajo
 		manzanas[8] = new Manzana(70,60+430,120,180, 0,color);
 		manzanas[9] = new Manzana(70+220,60+430,120,180, 0,color);
 		manzanas[10] = new Manzana(70+440,60+430,120,180, 0,color);
 		manzanas[11] = new Manzana(70+658,60+430,120,180, 0,color);
 		
+		
+		//poner en metodo de juego
 		//Eleccion de manzanaObjetivo
 		Random manzanaObjetivo = new Random();
-		int nm = manzanaObjetivo.nextInt(12);
+		nm = manzanaObjetivo.nextInt(12);
 		
 		//Manzana elegida
-		//System.out.println(nm);
+		System.out.println(nm);
 		
 		//Eleccion de casaObjetivo condicionando si es esquina o no != 3 7 11
 		if(nm != 3 && nm != 7 && nm != 11) {
 			Random casaObjetivo = new Random();
 			int co = casaObjetivo.nextInt(3);
 			
-			//System.out.println(co);
+			System.out.println(co);
 			manzanas[nm].getCasas(co).setCasaObjetivo(true);
+			
+			//casa objetivo variable
+			casaObj = manzanas[nm].getCasas(co);
 			
 		} else {
 			Random casaObjetivo = new Random();
@@ -73,10 +82,16 @@ public class Juego extends InterfaceJuego {
 			}
 			
 			//Casa elegida
-			//System.out.println(co);
-			
+			System.out.println(co);
 			manzanas[nm].getCasas(co).setCasaObjetivo(true);
-		}
+			
+			//casa objetivo variable
+			casaObj = manzanas[nm].getCasas(co);	
+		} //metodo cerrado
+		
+		
+		//otra cosa
+		
 		
 		//Comprobacion de casaObjetivo == true
 		
@@ -143,6 +158,13 @@ public class Juego extends InterfaceJuego {
 			ninjas[i].mover();
 			}
 		}
+		
+		
+		// condicial colision sakura
+		if(sakura.colisionCasa(casaObj,nm,manzanas)) {
+			//condiciones
+		}
+		
 		
 		//Dispara el kamehameha enl caso de tocar la barra espaciadora solo 3 veces
 		if (this.entorno.sePresiono(this.entorno.TECLA_ESPACIO)) {

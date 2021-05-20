@@ -100,7 +100,7 @@ public class Manzana {
 		}
 
 	  public Casa getCasas(int n) {
-			Casa casa = casas[n];
+		  	Casa casa = casas[n];
 			return casa;
 		}
 

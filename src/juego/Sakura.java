@@ -5,6 +5,7 @@ import java.awt.Color;
 import entorno.Entorno;
 
 public class Sakura {
+	
 	private double x;
 	private double y;
 	private double ancho;
@@ -26,6 +27,7 @@ public class Sakura {
 	public void dibujar (Entorno e) {
 		e.dibujarRectangulo(x, y, ancho, alto, 0, color);
 	}
+	
 	public void moverDerecha(Entorno x,Manzana[] manzanas) {
 		if (!(this.x+this.ancho/2==x.ancho())) {
 			  this.x+=this.movimiento;			  
@@ -35,6 +37,7 @@ public class Sakura {
 
 		direccion=1; // 1=derecha 
 		}
+	
 	public void moverIzquierda(Manzana[] manzanas) {                              
 
 		if (!(this.x-this.ancho/2<=0)) {
@@ -52,6 +55,7 @@ public class Sakura {
 		}
 		direccion=3;   // 3=Arriba
 	}
+	
 	public void moverAbajo(Entorno x, Manzana[] manzanas) {
 		if (!(this.y+this.alto/2>x.alto())) {
 			  this.y+=this.movimiento;		
@@ -60,6 +64,7 @@ public class Sakura {
 		}
 		direccion=4; // 4= abajo
 	}
+	
 	public void movimientoRango(Entorno entorno,Manzana[] manzanas) {		
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA)) {
 			moverDerecha(entorno, manzanas);	
@@ -71,6 +76,7 @@ public class Sakura {
 			moverArriba(manzanas);	
 		}
 	}
+	
 	public static boolean colision(double x1, double y1, double anchoX, double altoX,double x2, double y2,double altoY, double anchoY) {    //------ pensado para dos cuadrados-------
 		 if (x1<x2+anchoY  &&  x1+anchoX>x2 && y1 < y2+altoY && y1+altoX >y2) {
 			 return true;
@@ -78,6 +84,7 @@ public class Sakura {
 		return false;
 		 }
 	}
+	
 	public  boolean colision1(Manzana a) {
 		boolean l= this.y-this.alto/2< a.getY()+a.getAlto()/2 &&
 				this.x+this.ancho/2 > a.getX()-a.getAncho()/2 &&
@@ -86,6 +93,25 @@ public class Sakura {
 				
 		return l;
 	}
+	
+	
+	public  boolean colisionCasa(Casa a, int nm, Manzana manzanas[]) {
+		
+		if(a.equals(manzanas[nm].getCasas(0))) {
+			//colision imagen 1
+		} else if(a.equals(manzanas[nm].getCasas(1))) {
+			//colision imagen 1
+		} else if(a.equals(manzanas[nm].getCasas(2))) {
+			//colision imagen 2
+		} else if(a.equals(manzanas[nm].getCasas(3))) {
+			// colision imagen 3
+		} else if(a.equals(manzanas[nm].getCasas(4))) {
+			//colision imagen 3
+		}
+		
+		return false;
+	}
+	
 	public boolean movimientoRangoManzanas(Manzana[] manzanas) {
 		int cont=0;
 		for (int i=0 ; i<manzanas.length;i++) {
@@ -102,22 +128,26 @@ public class Sakura {
 		}
 
        }
+	
 	public double getX() {
 		return this.x;
 	}
+	
 	public double getY() {
 		return this.y;
 	}
+	
 	public double getAncho() {
 		return this.ancho;
 	}
+	
 	public double getAlto() {
 		return this.alto;
 	}
+	
 	public double getMovimiento() {
 		return this.movimiento;
 	}
-	
 	
 	public Rasengan disparar() {
 		return new Rasengan(this.x,this.y,direccion);
