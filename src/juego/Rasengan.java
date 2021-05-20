@@ -1,8 +1,10 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 
 public class Rasengan {
 	private double x;
@@ -10,13 +12,16 @@ public class Rasengan {
 	private double radio;
 	private double velocidad;
 	private int direccion;
+	private Image imagen4;
 	
-	public Rasengan(double x, double y,int dir) {
+	
+	public Rasengan(double x, double y,int dir,String imagen) {
 		this.x = x;
 		this.y = y;
-		this.radio = 5;
+		this.radio = 1;
 		this.velocidad = 5;
 		this.direccion = dir;
+		imagen4 = Herramientas.cargarImagen(imagen);
 	}
 	
 	public double getX() {
@@ -81,11 +86,11 @@ public class Rasengan {
 		}
 		this.y = this.y - this.velocidad;
 	}
-		
+
 	
 	//Dibuja Rasengan
 	public void Dibujar(Entorno entorno) {
-			entorno.dibujarCirculo(x, y, radio, Color.WHITE);
+		entorno.dibujarImagen(imagen4, x, y, radio);
 		}
 	
 }

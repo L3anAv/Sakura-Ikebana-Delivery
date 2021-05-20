@@ -12,7 +12,7 @@ public class Sakura {
 	private Color color;
 	private double movimiento;
 	private int direccion; 
-
+	private String imagen4 = "rasengan.png";
 	public Sakura(double x, double y, double ancho, double alto, Color color, double movimiento) {
 		this.x = x;
 		this.y = y;
@@ -27,7 +27,7 @@ public class Sakura {
 		e.dibujarRectangulo(x, y, ancho, alto, 0, color);
 	}
 	public void moverDerecha(Entorno x,Manzana[] manzanas) {
-		if (!(this.x+this.ancho/2==x.ancho())) {
+		if (!(this.x+this.ancho/2>x.ancho())) {
 			  this.x+=this.movimiento;			  
 		} if (movimientoRangoManzanas(manzanas)) {
 			this.x-=this.movimiento;	
@@ -120,7 +120,7 @@ public class Sakura {
 	
 	
 	public Rasengan disparar() {
-		return new Rasengan(this.x,this.y,direccion);
+		return new Rasengan(this.x,this.y,direccion,imagen4);
 	}
 	
 	}

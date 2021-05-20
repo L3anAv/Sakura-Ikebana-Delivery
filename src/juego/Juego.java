@@ -15,7 +15,6 @@ public class Juego extends InterfaceJuego {
 	private Color color;
 	private Ninja ninjas[];
 	private Rasengan rasengan[];
-
 	public Juego() {
 
 		//Inicializaciones
@@ -24,6 +23,7 @@ public class Juego extends InterfaceJuego {
 		sakura = new Sakura(20*20,20*10,10,10,Color.white,2);
 //		ramo= new Ramo(500,150,50,50,Color.blue,2);
 		rasengan = new Rasengan[3];
+		
 
 		//color de manzanas.
 		color = Color.decode("#9adb33");
@@ -90,7 +90,7 @@ public class Juego extends InterfaceJuego {
 		ninjas = new Ninja[6];
 		
 		ninjas[0] = new Ninja(3, 20, 10, 10, 2, 1);//ninja calle 1
-		ninjas[1] = new Ninja(800, 20*10, 10, 10,2,2 );//ninja calle 2
+		ninjas[1] = new Ninja(800, 20*10, 10, 10,2,2);//ninja calle 2
 		ninjas[2] = new Ninja(3, 20*20, 10, 10, 2, 1);//ninja calle 3
 		ninjas[3] = new Ninja(40*10, 10, 10, 10, 2,3 );//ninja calle 1,entre manzana 2 y 3
 		ninjas[4] = new Ninja(18*10, 20*30, 10, 10, 2,4 );//ninja calle 4,entre manzana 1 y 2
@@ -132,17 +132,27 @@ public class Juego extends InterfaceJuego {
 				manzanas[i].dibujarEsq(entorno);
 			}
 		};
-		for(int i=0;i<ninjas.length;i++) {
-			ninjas[i].Dibujarse(entorno);
-		};
+		
+		
+		
+		//for(int i=0;i<ninjas.length;i++) {
+			//ninjas[i].Dibujarse(entorno);
+		//};
+		
+		//for (int i = 0; i < ninjas.length; i++) {
+			//if(ninjas[i] != null)
+			//{
+			
+			//ninjas[i].mover();
+			//}
+		//}
 		
 		for (int i = 0; i < ninjas.length; i++) {
-			if(ninjas[i] != null)
-			{
-			
-			ninjas[i].mover();
-			}
-		}
+            if(ninjas[i] != null){
+            ninjas[i].Dibujarse(entorno);
+            ninjas[i].mover();
+            }
+        }
 		
 		//Dispara el kamehameha enl caso de tocar la barra espaciadora solo 3 veces
 		if (this.entorno.sePresiono(this.entorno.TECLA_ESPACIO)) {
@@ -182,10 +192,20 @@ public class Juego extends InterfaceJuego {
 		}
 		
 		
+			
+		for (int i = 0; i < ninjas.length; i++) {
+            if(ninjas[i]!=null && rasengan[0]!=null) {
+                    if(ninjas[i].colisionRasengan(rasengan[0],ninjas[i])==true) {
+
+                        rasengan[0]=null;
+                        ninjas[i]=null;
+                    }
+                }
+            }
+			}			
 		
 		
-		
-	}
+	
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

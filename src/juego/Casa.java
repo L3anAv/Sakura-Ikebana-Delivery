@@ -15,6 +15,7 @@ public class Casa {
 	  private Image imagen1;
 	  private boolean casaObjetivo;
 	  //private Color color;
+	  
 
 	/*
 	// Constructor casa
