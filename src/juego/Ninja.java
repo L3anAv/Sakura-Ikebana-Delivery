@@ -1,4 +1,5 @@
 //Falta Mover hacia abajo y arriba al ninja y que dispare la estrella ninja y colision con sakura
+//falta solo ninja
 
 package juego;
 
