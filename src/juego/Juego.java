@@ -19,6 +19,7 @@ public class Juego extends InterfaceJuego {
 	private Rasengan rasengan[];
 	private int nm;
 	
+	
 	public Casa elegirCasaObjetivo(Manzana manzanas[]) {
 			// eleccion de manzana random
 			Random manzanaObjetivo = new Random();
@@ -60,6 +61,7 @@ public class Juego extends InterfaceJuego {
 			}
 	}
 	
+	
 	public Marca elegirMarca(Casa casaObj, Manzana manzanas[]) {
 		if(casaObj == manzanas[nm].getCasas(0) || casaObj == manzanas[nm].getCasas(1)) {
 			return marca = new Marca(casaObj.getX()-20,casaObj.getY(),20,Color.BLACK);
@@ -75,13 +77,14 @@ public class Juego extends InterfaceJuego {
 		//Inicializaciones
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N - Apellido1 - Apellido2 -Apellido3 - V0.01", 800, 600);
 //		ramo= new Ramo(500,150,50,50,Color.blue,2);		
-		sakura = new Sakura(20*20,20*10,10,10,Color.white,2);
+		sakura = new Sakura(20*20,20*10,0,2);
+//		ramo= new Ramo(500,150,50,50,Color.blue,2);
+		rasengan = new Rasengan[1];
+		
+		//color de manzanas.
 		color = Color.decode("#9adb33");
 		
-		
-		
 		//Arreglos de objetos
-		rasengan = new Rasengan[3];
 		manzanas = new Manzana[12];
 		ninjas = new Ninja[6];
 		
@@ -100,7 +103,7 @@ public class Juego extends InterfaceJuego {
 		manzanas[11] = new Manzana(70+658,60+430,120,180, 0,color); // Hasta aca las de Abajo
 		
 		//Ninjas
-		ninjas[0] = new Ninja(3, 20, 10, 10, 2, 1);//ninja calle 1
+		ninjas[0] = new Ninja(2, 20*29, 10, 10, 2, 1);//ninja calle 1
 		ninjas[1] = new Ninja(800, 20*10, 10, 10,2,2);//ninja calle 2
 		ninjas[2] = new Ninja(3, 20*20, 10, 10, 2, 1);//ninja calle 3
 		ninjas[3] = new Ninja(40*10, 10, 10, 10, 2,3 );//ninja calle 1,entre manzana 2 y 3
@@ -115,20 +118,27 @@ public class Juego extends InterfaceJuego {
 		this.entorno.iniciar();
 	}
 
+
 	/**
 	 * Durante el juego, el método tick() será ejecutado en cada instante y 
 	 * por lo tanto es el método más importante de esta clase. Aquí se debe 
 	 * actualizar el estado interno del juego para simular el paso del tiempo 
 	 * (ver el enunciado del TP para mayor detalle).
 	 */
+
+	public Manzana[] getManzanas() {
+		return manzanas;
+	}
+
 	
 	public void tick() {
 		
 		// Procesamiento de un instante de tiempo
 		sakura.dibujar(entorno);
 		sakura.movimientoRango(entorno,manzanas);
+		
+		sakura.habilidadEspecialRasengan(entorno,manzanas, rasengan, ninjas);
 	
-
 		// x , y, ancho, alto, angulo, color
 		// 3 7 11
 		for(int i=0;i<manzanas.length;i++) {
@@ -138,7 +148,7 @@ public class Juego extends InterfaceJuego {
 				manzanas[i].dibujarEsq(entorno);
 			}
 		};
-		
+
 	
 		//for(int i=0;i<ninjas.length;i++) {
 			//ninjas[i].Dibujarse(entorno);
@@ -147,16 +157,15 @@ public class Juego extends InterfaceJuego {
 		//for (int i = 0; i < ninjas.length; i++) {
 			//if(ninjas[i] != null)
 			//{
+
 			
-			//ninjas[i].mover();
-			//}
-		//}
 		
 		for (int i = 0; i < ninjas.length; i++) {
             if(ninjas[i] != null){
             ninjas[i].Dibujarse(entorno);
             ninjas[i].mover();
             }
+
         }
 		
 		marca.dibujarMarca(entorno);
@@ -222,6 +231,7 @@ public class Juego extends InterfaceJuego {
             }
 			}			
 		
+
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		Juego juego = new Juego();

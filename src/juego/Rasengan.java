@@ -48,7 +48,8 @@ public class Rasengan {
 		this.radio = radio;
 	}
 	
-	//Movimiento del Rasengan
+	
+	//---Movimiento del Rasengan----
 	public void mover() {
 		if (this.direccion == 1) {
 			moverDerecha();
@@ -60,14 +61,12 @@ public class Rasengan {
 			moverAbajo();
 		}
 	}
-	//Mueve el ninja hacia la derecha en caso que corresponda
 	private void moverDerecha() {
 		if(this.x >= 800) {
 			this.x = 0;
 		}
 		this.x = this.x + this.velocidad;
 	}
-	//Mueve el ninja hacia la izquierda enl caso que corresponda
 	private void moverIzquierda() {
 		if(this.x <= 0) {
 			this.x = 800;
@@ -86,8 +85,51 @@ public class Rasengan {
 		}
 		this.y = this.y - this.velocidad;
 	}
-
 	
+	//---- Colision y rango de movimiento ----
+	
+	public boolean  movimientoRangoManzasRasengan(Manzana[] manzanas, Rasengan rasengan) {
+		int cont=0;
+		for (int i=0 ; i<manzanas.length;i++) {
+			if (colisionRasenganManzana(rasengan, manzanas[i])==true) { //modificar x e y si hay problemas de rango...
+				cont+=1;
+			}else {
+				cont=cont+0;
+			}
+			}
+		if (cont>0) {
+			return true; 
+		}else {
+			return false;
+		}
+
+       }	
+	public boolean colisionRasenganManzana(Rasengan rasengan, Manzana manzana ) {
+		double posicionSupManzana;
+		double posicionInfManzana;
+		double posicionIzqManzana;
+		double posicionDerManzana;
+		
+		double posicionSuprasengan;
+		double posicionInfrasengan;
+		double posicionIzqrasengan;
+		double posicionDerrasengan;
+				
+		
+		posicionSupManzana = manzana.getY() - manzana.getAlto()/2;
+		posicionInfManzana = manzana.getY() + manzana.getAlto()/2;
+		posicionIzqManzana = manzana.getX() - manzana.getAncho()/2;
+		posicionDerManzana = manzana.getX() + manzana.getAncho()/2;
+			
+		posicionSuprasengan = rasengan.getY() - rasengan.getRadio();
+		posicionInfrasengan = rasengan.getY() + rasengan.getRadio();
+		posicionIzqrasengan = rasengan.getX() - rasengan.getRadio();
+		posicionDerrasengan = rasengan.getX() + rasengan.getRadio();
+											
+		return !(posicionSupManzana > posicionInfrasengan || posicionInfManzana < posicionSuprasengan || posicionIzqManzana > posicionDerrasengan || posicionDerManzana < posicionIzqrasengan);		
+}
+	
+
 	//Dibuja Rasengan
 	public void Dibujar(Entorno entorno) {
 		entorno.dibujarImagen(imagen4, x, y, radio);
