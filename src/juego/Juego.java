@@ -20,11 +20,11 @@ public class Juego extends InterfaceJuego {
 		//Inicializaciones
 		this.entorno = new Entorno(this, "Sakura Ikebana Delivery - Grupo N - Apellido1 - Apellido2 -Apellido3 - V0.01", 800, 600);
 //		ramo= new Ramo(500,150,50,50,Color.blue,2);		
-		sakura = new Sakura(20*20,20*10,10,10,Color.white,2);
+		sakura = new Sakura(20*20,20*10,0,2);
 //		ramo= new Ramo(500,150,50,50,Color.blue,2);
 		rasengan = new Rasengan[1];
 		
-
+		
 		//color de manzanas.
 		color = Color.decode("#9adb33");
 		
@@ -104,13 +104,6 @@ public class Juego extends InterfaceJuego {
 	public Manzana[] getManzanas() {
 		return manzanas;
 	}
-
-	/**
-	 * Durante el juego, el método tick() será ejecutado en cada instante y 
-	 * por lo tanto es el método más importante de esta clase. Aquí se debe 
-	 * actualizar el estado interno del juego para simular el paso del tiempo 
-	 * (ver el enunciado del TP para mayor detalle).
-	 */
 	
 	public void tick() {
 		
@@ -119,11 +112,11 @@ public class Juego extends InterfaceJuego {
 		// ...
 	    
 		sakura.dibujar(entorno);
-		sakura.movimientoRango(entorno,manzanas);
-		sakura.habilidadEspecialRasengan(entorno,manzanas, rasengan, ninjas);
 		
+		sakura.movimientoRango(entorno,manzanas);
+		
+		sakura.habilidadEspecialRasengan(entorno,manzanas, rasengan, ninjas);
 	
-
 		// x , y, ancho, alto, angulo, color
 		// 3 7 11
 		for(int i=0;i<manzanas.length;i++) {
@@ -141,6 +134,10 @@ public class Juego extends InterfaceJuego {
             ninjas[i].mover();
             }
         }					
+		
+	}
+	
+	public void a() {
 		
 	}
 	

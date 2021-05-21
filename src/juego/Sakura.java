@@ -1,35 +1,51 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 
 public class Sakura {
 	private double x;
+	private Image sakura;
 	private double y;
+	private double angulo;
 	private double ancho;
 	private double alto;
-	private Color color;
 	private double movimiento;
 	private int direccion; 
 	private String imagen4 = "rasengan.png";
 	
+//	 imagen = 40x40
+	
 	// ---- constructor sakura ----
 	
-	public Sakura(double x, double y, double ancho, double alto, Color color, double movimiento) {
+//	public Sakura(double x, double y, double ancho, double alto, Color color, double movimiento) {
+//		this.x = x;
+//		this.y = y;
+//		this.ancho = ancho;
+//		this.alto = alto;
+//		this.color = color;
+//		this.movimiento = movimiento;
+//		
+//	}
+	
+	public Sakura(double x, double y, double angulo,double movimiento) {
 		this.x = x;
 		this.y = y;
-		this.ancho = ancho;
-		this.alto = alto;
-		this.color = color;
-		this.movimiento = movimiento;
-		
+		this.angulo = angulo;
+		sakura = Herramientas.cargarImagen("sakura-chibi.png");
+		this.alto=20;
+		this.ancho=20;
+		this.movimiento=movimiento;
 	}
 	
 	// ---- dibujar sakura ----
 	
 	public void dibujar (Entorno e) {
-		e.dibujarRectangulo(x, y, ancho, alto, 0, color);
+//		e.dibujarRectangulo(x, y, ancho, alto, 0, color);
+		e.dibujarImagen(sakura, x, y, angulo);
 	}
 	
 	// ---- movimiento de sakura y limites ----
@@ -40,9 +56,9 @@ public class Sakura {
 		} if (movimientoRangoManzanas(manzanas)) {
 			this.x-=this.movimiento;	
 		}
-
 		direccion=1; // 1=derecha 
 		}
+	
 	public void moverIzquierda(Manzana[] manzanas) {                              
 
 		if (!(this.x-this.ancho/2<=0)) {
@@ -82,6 +98,7 @@ public class Sakura {
 	}
 	public boolean movimientoRangoManzanas(Manzana[] manzanas) {
 		int cont=0;
+		//x 85 y 55
 		for (int i=0 ; i<manzanas.length;i++) {
 			if (colision(this.x+85,this.y+55,this.ancho,this.alto,manzanas[i].getX(),manzanas[i].getY(),manzanas[i].getAlto(),manzanas[i].getAncho())==true) { //modificar x e y si hay problemas de rango...
 				cont+=1;
