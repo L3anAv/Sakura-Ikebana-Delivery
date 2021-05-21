@@ -61,6 +61,16 @@ public class Casa {
 	public boolean getCasaobjetivo() {
 		return casaObjetivo;
 	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	
 	
 	  
 }

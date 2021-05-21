@@ -1,5 +1,4 @@
-//Falta Mover hacia abajo y arriba al ninja y que dispare la estrella ninja
-
+//Falta Mover hacia abajo y arriba al ninja y que dispare la estrella ninja y colision con sakura
 
 package juego;
 

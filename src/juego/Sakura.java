@@ -4,6 +4,7 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Sakura {
+	
 	private double x;
 	private Image sakura;
 	private double y;
@@ -14,7 +15,8 @@ public class Sakura {
 	private int direccion; 
 	private String imagen4 = "rasengan.png";
 	
-//	 imagen = 40x40	
+
+
 	public Sakura(double x, double y, double angulo,double movimiento) {
 		this.x = x;
 		this.y = y;
@@ -32,8 +34,8 @@ public class Sakura {
 		e.dibujarImagen(sakura, x, y, angulo);
 	}
 	
+	
 	// ---- movimiento de sakura y limites ----
-
 	public void moverDerecha(Entorno x,Manzana[] manzanas) {
 		if (!(this.x+10+this.ancho/2>x.ancho())) {
 			  this.x+=this.movimiento;			  
@@ -42,7 +44,6 @@ public class Sakura {
 		}
 		direccion=1; // 1=derecha 
 		}
-	
 	public void moverIzquierda(Manzana[] manzanas) {                              
 
 		if (!(this.x+1-this.ancho<=0)) {
@@ -69,7 +70,6 @@ public class Sakura {
 		direccion=4; // 4= abajo
 	}
 	public void movimientoRango(Entorno entorno,Manzana[] manzanas) {
-		
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA)) {
 			moverDerecha(entorno, manzanas);	
 		}else if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA))  {
@@ -99,7 +99,6 @@ public class Sakura {
        }
 	
 	// ---- metodo colison entre dos rectangulos ----
-	
     public static boolean colision(double x1, double y1, double anchoX, double altoX,double x2, double y2,double altoY, double anchoY) {    //------ pensado para dos cuadrados-------
 		 if (x1<x2+anchoY  &&  x1+anchoX>x2 && y1 < y2+altoY && y1+altoX >y2) {
 			 return true;
@@ -107,9 +106,54 @@ public class Sakura {
 		return false;
 		 }
 	}	
-
-	//---- sakura en relacion con ninjas y rasengan (habilidad espacial) ----
-	
+    public boolean colisionCasa(Casa a, int nm, Manzana manzanas[]) {
+		if(a.equals(manzanas[nm].getCasas(0)) || a.equals(manzanas[nm].getCasas(1))) {
+			
+			int anchoC1 = 110;
+			int altoC1 = 39;
+			
+			if(this.x-this.ancho/2 < a.getX()+anchoC1/2 && 
+			   this.x+this.ancho/2 > a.getX()-anchoC1/2 && 
+			   this.y-this.alto/2<a.getY()+altoC1/2 &&
+			   this.y+this.alto/2>a.getY()-altoC1/2  ) {
+				return true;
+			}else {
+				return false;
+			}
+			
+		} else if(a.equals(manzanas[nm].getCasas(2))) {
+			
+			int anchoC2 = 40;
+			int altoC2 = 70;
+			
+			if(this.x-this.ancho/2 < a.getX()+anchoC2/2 && 
+			   this.x+this.ancho/2 > a.getX()-anchoC2/2 && 
+			   this.y-this.alto/2<a.getY()+altoC2/2 &&
+			   this.y+this.alto/2>a.getY()-altoC2/2 ) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} else if(a.equals(manzanas[nm].getCasas(3)) || a.equals(manzanas[nm].getCasas(4))) {
+			
+			int anchoC3 = 70;
+			int altoC3 = 40;
+			
+			if(this.x-this.ancho/2 < a.getX()+anchoC3/2 && 
+			   this.x+this.ancho/2 > a.getX()-anchoC3/2 && 
+			   this.y-this.alto/2<a.getY()+altoC3/2 &&
+			   this.y+this.alto/2>a.getY()-altoC3/2) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		return false;
+	}
+    
+    //---- sakura en relacion con ninjas y rasengan (habilidad espacial) ----
     public Rasengan disparar() {
 		return new Rasengan(this.x,this.y,direccion,imagen4);
 	}
@@ -160,26 +204,31 @@ public class Sakura {
             }
 	
      }
-	
 	// ---- getters ----						
 	
     public double getX() {
 		return this.x;
 	}
+	
 	public double getY() {
 		return this.y;
 	}
+	
 	public double getAncho() {
 		return this.ancho;
 	}
+	
 	public double getAlto() {
 		return this.alto;
 	}
+	
 	public double getMovimiento() {
 		return this.movimiento;
 	}
 	
-	
+
+
+
 	
 	}
 	

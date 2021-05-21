@@ -17,7 +17,7 @@ public class Rasengan {
 		this.x = x;
 		this.y = y;
 		this.radio = 1;
-		this.velocidad = 5;
+		this.velocidad = 3;
 		this.direccion = dir;
 		imagen4 = Herramientas.cargarImagen(imagen);
 	}
