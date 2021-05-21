@@ -22,7 +22,7 @@ public class Juego extends InterfaceJuego {
 //		ramo= new Ramo(500,150,50,50,Color.blue,2);		
 		sakura = new Sakura(20*20,20*10,10,10,Color.white,2);
 //		ramo= new Ramo(500,150,50,50,Color.blue,2);
-		rasengan = new Rasengan[3];
+		rasengan = new Rasengan[1];
 		
 
 		//color de manzanas.
@@ -119,8 +119,9 @@ public class Juego extends InterfaceJuego {
 		// ...
 	    
 		sakura.dibujar(entorno);
-		
 		sakura.movimientoRango(entorno,manzanas);
+		sakura.habilidadEspecialRasengan(entorno,manzanas, rasengan, ninjas);
+		
 	
 
 		// x , y, ancho, alto, angulo, color
@@ -132,79 +133,16 @@ public class Juego extends InterfaceJuego {
 				manzanas[i].dibujarEsq(entorno);
 			}
 		};
-		
-		
-		
-		//for(int i=0;i<ninjas.length;i++) {
-			//ninjas[i].Dibujarse(entorno);
-		//};
-		
-		//for (int i = 0; i < ninjas.length; i++) {
-			//if(ninjas[i] != null)
-			//{
 			
-			//ninjas[i].mover();
-			//}
-		//}
 		
 		for (int i = 0; i < ninjas.length; i++) {
             if(ninjas[i] != null){
             ninjas[i].Dibujarse(entorno);
             ninjas[i].mover();
             }
-        }
+        }					
 		
-		//Dispara el kamehameha enl caso de tocar la barra espaciadora solo 3 veces
-		if (this.entorno.sePresiono(this.entorno.TECLA_ESPACIO)) {
-
-			boolean dispararRasengan = false;
-			for (int i = 0; i < rasengan.length && !dispararRasengan; i++) {
-				if (rasengan[i] == null) 
-				{
-					rasengan[i] = this.sakura.disparar();
-					dispararRasengan = true;
-				}
-			}
-		}
-		//dibuja el kamehameha y desaparece segun los limites en X e Y
-		for (int i = 0; i < rasengan.length; i++) {
-			if (rasengan[i] != null) {
-				rasengan[i].mover();
-				rasengan[i].Dibujar(entorno);
-				
-				if(rasengan[i].getX() <= 0 ) 
-				{
-					rasengan[i] = null;
-				}
-				else if(rasengan[i].getX()  >= 800) 
-				{
-					rasengan[i] = null;
-				}
-				else if(rasengan[i].getY() <= 0 ) 
-				{
-					rasengan[i] = null;
-				}
-				else if(rasengan[i].getY()  >= 800) 
-				{
-					rasengan[i] = null;
-				}
-			}
-		}
-		
-		
-			
-		for (int i = 0; i < ninjas.length; i++) {
-            if(ninjas[i]!=null && rasengan[0]!=null) {
-                    if(ninjas[i].colisionRasengan(rasengan[0],ninjas[i])==true) {
-
-                        rasengan[0]=null;
-                        ninjas[i]=null;
-                    }
-                }
-            }
-			}			
-		
-		
+	}
 	
 	
 	@SuppressWarnings("unused")
