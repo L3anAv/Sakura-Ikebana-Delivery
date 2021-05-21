@@ -39,7 +39,7 @@ public class Manzana {
 	        
 	        casas[0] = new Casa(x+65,y-32,0,false,imagen1); 
 	        casas[1] = new Casa(x+65,y+30,0,false,imagen1); 
-	        casas[2] = new Casa(x-35,y+47,0,false,imagen2);
+	        casas[2] = new Casa(x-35,y+49,0,false,imagen2);
 	        
 	        casas[3] = new Casa(x-75,y-32,0,false,imagen3);
 	        casas[4] = new Casa(x-75,y+30,0,false,imagen3);
@@ -103,7 +103,6 @@ public class Manzana {
 		  	Casa casa = casas[n];
 			return casa;
 		}
-
-	
+	  
 	}
 

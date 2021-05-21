@@ -13,7 +13,8 @@ public class Sakura {
 	private Color color;
 	private double movimiento;
 	private int direccion; 
-
+	private String imagen4 = "rasengan.png";
+	
 	public Sakura(double x, double y, double ancho, double alto, Color color, double movimiento) {
 		this.x = x;
 		this.y = y;
@@ -29,7 +30,7 @@ public class Sakura {
 	}
 	
 	public void moverDerecha(Entorno x,Manzana[] manzanas) {
-		if (!(this.x+this.ancho/2==x.ancho())) {
+		if (!(this.x+this.ancho/2>x.ancho())) {
 			  this.x+=this.movimiento;			  
 		} if (movimientoRangoManzanas(manzanas)) {
 			this.x-=this.movimiento;	
@@ -87,26 +88,59 @@ public class Sakura {
 	
 	public  boolean colision1(Manzana a) {
 		boolean l= this.y-this.alto/2< a.getY()+a.getAlto()/2 &&
+				
 				this.x+this.ancho/2 > a.getX()-a.getAncho()/2 &&
+				
 				this.y+this.alto/2 > a.getY()-a.getAlto()/2 &&
+				
 				this.x-this.ancho/2< a.getY()+a.getAncho()/2;
 				
 		return l;
 	}
 	
-	
-	public  boolean colisionCasa(Casa a, int nm, Manzana manzanas[]) {
+	public boolean colisionCasa(Casa a, int nm, Manzana manzanas[]) {
 		
-		if(a.equals(manzanas[nm].getCasas(0))) {
-			//colision imagen 1
-		} else if(a.equals(manzanas[nm].getCasas(1))) {
-			//colision imagen 1
+		if(a.equals(manzanas[nm].getCasas(0)) || a.equals(manzanas[nm].getCasas(1))) {
+			
+			int anchoC1 = 110;
+			int altoC1 = 39;
+			
+			if(this.x-this.ancho/2 < a.getX()+anchoC1/2 && 
+			   this.x+this.ancho/2 > a.getX()-anchoC1/2 && 
+			   this.y-this.alto/2<a.getY()+altoC1/2 &&
+			   this.y+this.alto/2>a.getY()-altoC1/2  ) {
+				return true;
+			}else {
+				return false;
+			}
+			
 		} else if(a.equals(manzanas[nm].getCasas(2))) {
-			//colision imagen 2
-		} else if(a.equals(manzanas[nm].getCasas(3))) {
-			// colision imagen 3
-		} else if(a.equals(manzanas[nm].getCasas(4))) {
-			//colision imagen 3
+			
+			int anchoC2 = 40;
+			int altoC2 = 70;
+			
+			if(this.x-this.ancho/2 < a.getX()+anchoC2/2 && 
+			   this.x+this.ancho/2 > a.getX()-anchoC2/2 && 
+			   this.y-this.alto/2<a.getY()+altoC2/2 &&
+			   this.y+this.alto/2>a.getY()-altoC2/2 ) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} else if(a.equals(manzanas[nm].getCasas(3)) || a.equals(manzanas[nm].getCasas(4))) {
+			
+			int anchoC3 = 70;
+			int altoC3 = 40;
+			
+			if(this.x-this.ancho/2 < a.getX()+anchoC3/2 && 
+			   this.x+this.ancho/2 > a.getX()-anchoC3/2 && 
+			   this.y-this.alto/2<a.getY()+altoC3/2 &&
+			   this.y+this.alto/2>a.getY()-altoC3/2) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
 		return false;
@@ -150,7 +184,7 @@ public class Sakura {
 	}
 	
 	public Rasengan disparar() {
-		return new Rasengan(this.x,this.y,direccion);
+		return new Rasengan(this.x,this.y,direccion,imagen4);
 	}
 	
 	}

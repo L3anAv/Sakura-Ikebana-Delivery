@@ -4,8 +4,10 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 
 public class Ninja {
 	private double x;
@@ -14,6 +16,7 @@ public class Ninja {
     private double ancho;
     private double velocidad;
     private int direccion;
+
     
     
     public double getAlto() {
@@ -39,6 +42,7 @@ public class Ninja {
     	this.ancho = ancho;
     	this.velocidad = velocidad;
     	this.direccion = dir;
+    	
     }
 	
 	public double getVelocidad() {
@@ -100,8 +104,32 @@ public class Ninja {
 			}
 			this.y = this.y - this.velocidad;
 		}
+		boolean colisionRasengan(Rasengan rasengan, Ninja ninja ) {
+			double posicionSupNinja;
+			double posicionInfNinja;
+			double posicionIzqNinja;
+			double posicionDerNinja;
+			
+			double posicionSuprasengan;
+			double posicionInfrasengan;
+			double posicionIzqrasengan;
+			double posicionDerrasengan;
+					
+			
+			posicionSupNinja = ninja.getY() - ninja.getAlto()/2;
+			posicionInfNinja = ninja.getY() + ninja.getAlto()/2;
+			posicionIzqNinja = ninja.getX() - ninja.getAncho()/2;
+			posicionDerNinja = ninja.getX() + ninja.getAncho()/2;
+				
+			posicionSuprasengan = rasengan.getY() - rasengan.getRadio();
+			posicionInfrasengan = rasengan.getY() + rasengan.getRadio();
+			posicionIzqrasengan = rasengan.getX() - rasengan.getRadio();
+			posicionDerrasengan = rasengan.getX() + rasengan.getRadio();
+												
+			return !(posicionSupNinja > posicionInfrasengan || posicionInfNinja < posicionSuprasengan || posicionIzqNinja > posicionDerrasengan || posicionDerNinja < posicionIzqrasengan);		
+	}
 	    //Dibuja el ninja en este caso color negro
 	 	public void Dibujarse(Entorno entorno) {
-	    	entorno.dibujarRectangulo(this.x, this.y, this.ancho, this.alto,0.0,Color.RED);
+	    	entorno.dibujarRectangulo(this.x, this.y, ancho, alto,0.0, Color.BLUE);
 		}
 }
