@@ -1,8 +1,5 @@
 package juego;
-
-import java.awt.Color;
 import java.awt.Image;
-
 import entorno.Entorno;
 import entorno.Herramientas;
 
@@ -17,27 +14,14 @@ public class Sakura {
 	private int direccion; 
 	private String imagen4 = "rasengan.png";
 	
-//	 imagen = 40x40
-	
-	// ---- constructor sakura ----
-	
-//	public Sakura(double x, double y, double ancho, double alto, Color color, double movimiento) {
-//		this.x = x;
-//		this.y = y;
-//		this.ancho = ancho;
-//		this.alto = alto;
-//		this.color = color;
-//		this.movimiento = movimiento;
-//		
-//	}
-	
+//	 imagen = 40x40	
 	public Sakura(double x, double y, double angulo,double movimiento) {
 		this.x = x;
 		this.y = y;
 		this.angulo = angulo;
 		sakura = Herramientas.cargarImagen("sakura-chibi.png");
-		this.alto=20;
-		this.ancho=20;
+		this.alto=10;
+		this.ancho=15;
 		this.movimiento=movimiento;
 	}
 	
@@ -51,7 +35,7 @@ public class Sakura {
 	// ---- movimiento de sakura y limites ----
 
 	public void moverDerecha(Entorno x,Manzana[] manzanas) {
-		if (!(this.x+this.ancho/2>x.ancho())) {
+		if (!(this.x+10+this.ancho/2>x.ancho())) {
 			  this.x+=this.movimiento;			  
 		} if (movimientoRangoManzanas(manzanas)) {
 			this.x-=this.movimiento;	
@@ -61,7 +45,7 @@ public class Sakura {
 	
 	public void moverIzquierda(Manzana[] manzanas) {                              
 
-		if (!(this.x-this.ancho/2<=0)) {
+		if (!(this.x+1-this.ancho<=0)) {
 			this.x-=this.movimiento;
 		}if (movimientoRangoManzanas(manzanas)) {
 			this.x+=this.movimiento;
@@ -69,7 +53,7 @@ public class Sakura {
 		direccion=2; // 2 =izquierda
 		}
 	public void moverArriba(Manzana[] manzanas) {
-		if (!(this.y-this.alto/2<0) ) {
+		if (!(this.y-50-this.alto<0) ) {
 			this.y-=this.movimiento;
 		}if (movimientoRangoManzanas(manzanas)) {
 			this.y+=this.movimiento;
@@ -77,7 +61,7 @@ public class Sakura {
 		direccion=3;   // 3=Arriba
 	}
 	public void moverAbajo(Entorno x, Manzana[] manzanas) {
-		if (!(this.y+this.alto/2>x.alto())) {
+		if (!(this.y+12+this.alto>x.alto())) {
 			  this.y+=this.movimiento;		
 		}if (movimientoRangoManzanas(manzanas)) {
 			this.y-=this.movimiento;
@@ -100,7 +84,7 @@ public class Sakura {
 		int cont=0;
 		//x 85 y 55
 		for (int i=0 ; i<manzanas.length;i++) {
-			if (colision(this.x+85,this.y+55,this.ancho,this.alto,manzanas[i].getX(),manzanas[i].getY(),manzanas[i].getAlto(),manzanas[i].getAncho())==true) { //modificar x e y si hay problemas de rango...
+			if (colision(this.x+90,this.y+70,this.ancho,this.alto,manzanas[i].getX(),manzanas[i].getY(),manzanas[i].getAlto()+28,manzanas[i].getAncho()+15)==true) { //modificar x e del sakura o manzanas[i] y si hay problemas de rango...
 				cont+=1;
 			}else {
 				cont=cont+0;
