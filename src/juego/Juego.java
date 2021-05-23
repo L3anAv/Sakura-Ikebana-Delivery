@@ -110,6 +110,8 @@ public class Juego extends InterfaceJuego {
 		ninjas[4] = new Ninja(18*10, 20*30, 10, 10, 2,4 );//ninja calle 4,entre manzana 1 y 2
 		ninjas[5] = new Ninja(62*10, 20*30, 10, 10, 2,4 );//ninja calle 4,entre manzana 3 y 4
 		
+
+		
 		// Eleccion de casa objetivo y marca sobre la casa objetivo
 		casaObj = elegirCasaObjetivo(manzanas);
 		marca = elegirMarca(casaObj, manzanas);
@@ -159,13 +161,28 @@ public class Juego extends InterfaceJuego {
 			//{
 
 			
-		
+		//dibuja ninjas
 		for (int i = 0; i < ninjas.length; i++) {
-            if(ninjas[i] != null){
-            ninjas[i].Dibujarse(entorno);
-            ninjas[i].mover();
-            }
-
+            	 if(ninjas[i] != null) {
+          		
+                 //  else if(ninjas[i].getDireccion() ==3) {
+                //	   ninjas[i] = new Ninja(40*10, 10, 10, 10, 2,3 );
+                //	   ninjas[i].Dibujarse(entorno);
+                //	   ninjas[i].mover();
+          		//	  }
+                 //  else if(ninjas[i].getDireccion() ==4) {
+                //	   ninjas[i] = new Ninja(18*10, 20*30, 10, 10, 2,4 );
+                //	   ninjas[i].Dibujarse(entorno); 
+                //	   ninjas[i].mover();
+          		//	  }
+                  	
+                  
+            
+			 
+            	ninjas[i].Dibujarse(entorno);
+             	ninjas[i].mover();
+            	 }
+            	 
         }
 		
 		marca.dibujarMarca(entorno);
@@ -219,17 +236,58 @@ public class Juego extends InterfaceJuego {
 		}
 		
 		
-			
+		//Colision Rasengan(Verificacion)	
 		for (int i = 0; i < ninjas.length; i++) {
+			double a =  ninjas[i].getDireccion();
             if(ninjas[i]!=null && rasengan[0]!=null) {
                     if(ninjas[i].colisionRasengan(rasengan[0],ninjas[i])==true) {
 
                         rasengan[0]=null;
-                        ninjas[i]=null;
+                        ninjas[i]=null;       
+                        
                     }
-                }
+                    if(ninjas[i] == null) {
+                    	if(a == 1) {
+                    		ninjas[i] = new Ninja(2, 20*29, 10, 10, 4, 1);
+                    		ninjas[i].Dibujarse(entorno);
+               		 		
+               	 }else if(a ==2) {
+                    	  ninjas[i] = new Ninja(800, 20*10, 10, 10,2,2);
+                    	  ninjas[i].Dibujarse(entorno);
+             		 	  System.out.println(ninjas[i]);
+                }else if(a ==3) {
+                     	 ninjas[i] = new Ninja(40*10, 10, 10, 10, 2,3 );
+                         ninjas[i].Dibujarse(entorno);
+                         
+               }
+                 else if(a ==4) {
+                         ninjas[i] = new Ninja(18*10, 20*30, 10, 10, 2,4 );
+                         ninjas[i].Dibujarse(entorno); 
+                         
+                  	 }
+               }
             }
-			}			
+         }
+		
+		//Verificacion de colsion Ninja Sakura
+		for (int i = 0; i < ninjas.length; i++) {
+			if(ninjas[i]!=null && sakura!=null) {
+				if(ninjas[i].colisionSakura(sakura,ninjas[i])==true) {
+					entorno.dispose();
+				}
+			}
+		}
+			
+	}          
+
+        
+		
+		
+	
+
+        
+		
+				
 		
 
 	@SuppressWarnings("unused")

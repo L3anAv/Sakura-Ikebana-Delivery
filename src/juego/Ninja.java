@@ -1,4 +1,4 @@
-//Falta Mover hacia abajo y arriba al ninja y que dispare la estrella ninja y colision con sakura
+
 
 package juego;
 
@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Image;
 
 import entorno.Entorno;
+import entorno.Herramientas;
 public class Ninja {
 	private double x;
     private double y;
@@ -13,34 +14,42 @@ public class Ninja {
     private double ancho;
     private double velocidad;
     private int direccion;
-
+    private Image ninja;
+    private double angulo;
     
     
-    public double getAlto() {
-		return alto;
-	}
-
-	public void setAlto(double alto) {
-		this.alto = alto;
-	}
-
-	public double getAncho() {
-		return ancho;
-	}
-
-	public void setAncho(double ancho) {
-		this.ancho = ancho;
-	}
-	
+   
 	Ninja(double x, double y, double ancho, double alto, double velocidad,int dir){
     	this.x = x;
     	this.y = y;
-    	this.alto = alto;
-    	this.ancho = ancho;
+    	this.alto = 10;
+    	this.ancho = 10;
+    	this.angulo = 0;
+    	ninja = Herramientas.cargarImagen("ninja.png");
     	this.velocidad = velocidad;
     	this.direccion = dir;
     	
     }
+	 public double getDireccion() {
+			return direccion;
+		}
+	
+	 public double getAlto() {
+			return alto;
+		}
+
+		public void setAlto(double alto) {
+			this.alto = alto;
+		}
+
+		public double getAncho() {
+			return ancho;
+		}
+
+		public void setAncho(double ancho) {
+			this.ancho = ancho;
+		}
+		
 	
 	public double getVelocidad() {
 		return this.velocidad;
@@ -125,8 +134,34 @@ public class Ninja {
 												
 			return !(posicionSupNinja > posicionInfrasengan || posicionInfNinja < posicionSuprasengan || posicionIzqNinja > posicionDerrasengan || posicionDerNinja < posicionIzqrasengan);		
 	}
-	    //Dibuja el ninja en este caso color negro
+		//metodo de colision de sakura con Ninja
+		boolean colisionSakura(Sakura sakura , Ninja ninjas) {
+			double posicionSupSakura;
+			double posicionInfSakura;
+			double posicionIzqSakura;
+			double posicionDerSakura;
+			
+			double posicionSupNinja;
+			double posicionInfNinja;
+			double posicionIzqNinja;
+			double posicionDerNinja;			
+			
+			posicionSupSakura = sakura.getY() - sakura.getAlto()/2;
+			posicionInfSakura = sakura.getY() + sakura.getAlto()/2;
+			posicionIzqSakura = sakura.getX() - sakura.getAncho()/2;
+			posicionDerSakura = sakura.getX() + sakura.getAncho()/2;
+				
+			posicionSupNinja = ninjas.getY() - ninjas.getAlto()/2;
+			posicionInfNinja = ninjas.getY() + ninjas.getAlto()/2;
+			posicionIzqNinja = ninjas.getX() - ninjas.getAncho()/2;
+			posicionDerNinja = ninjas.getX() + ninjas.getAncho()/2;
+												
+			return !(posicionSupSakura > posicionInfNinja || posicionInfSakura < posicionSupNinja || posicionIzqSakura > posicionDerNinja || posicionDerSakura < posicionIzqNinja);
+			
+		}
+		
+	    //Dibuja el ninja en este caso color azul
 	 	public void Dibujarse(Entorno entorno) {
-	    	entorno.dibujarRectangulo(this.x, this.y, ancho, alto,0.0, Color.BLUE);
+	    	entorno.dibujarImagen(ninja, x, y, angulo);
 		}
 }
