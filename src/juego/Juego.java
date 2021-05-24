@@ -46,9 +46,6 @@ public class Juego extends InterfaceJuego {
 		manzanas[10] = new Manzana(70+440,60+430,120,180, 0,color);
 		manzanas[11] = new Manzana(70+658,60+430,120,180, 0,color); // Hasta aca las de Abajo
 		
-		//CasaObj
-		casaObj = elegirCasaObjetivo(manzanas);
-		
 		//Ninjas
 		ninjas[0] = new Ninja(2, 20*29, 10, 10, 2, 1);//ninja calle 1
 		ninjas[1] = new Ninja(800, 20*10, 10, 10,2,2);//ninja calle 2
@@ -56,7 +53,12 @@ public class Juego extends InterfaceJuego {
 		ninjas[3] = new Ninja(40*10, 10, 10, 10, 2,3 );//ninja calle 1,entre manzana 2 y 3
 		ninjas[4] = new Ninja(18*10, 20*30, 10, 10, 2,4 );//ninja calle 4,entre manzana 1 y 2
 		ninjas[5] = new Ninja(62*10, 20*30, 10, 10, 2,4 );//ninja calle 4,entre manzana 3 y 4
+
+
 		
+		// Eleccion de casa objetivo y marca sobre la casa objetivo
+		casaObj = elegirCasaObjetivo(manzanas);
+
 		// Inicia el juego!
 		this.entorno.iniciar();
 	}
@@ -86,6 +88,7 @@ public class Juego extends InterfaceJuego {
 				manzanas[i].dibujarEsq(entorno);
 			}
 		};
+
 		
 		//Dibujar ninjas
 		for (int i = 0; i < ninjas.length; i++) {
@@ -94,14 +97,13 @@ public class Juego extends InterfaceJuego {
             ninjas[i].Dibujarse(entorno);
             ninjas[i].mover();
             }
-
-        }
-		
+		}
+			
 		// Condicinal para colision de sakura con casaObj
 		if(sakura.colisionCasa(casaObj)) {
 			casaObj.setCasaObjetivo(false);
 			casaObj = elegirCasaObjetivo(manzanas);
-			
+			casaObj.setCasaObjetivo(true);
 		}
 		
 		//Dispara el kamehameha enl caso de tocar la barra espaciadora solo 3 veces
@@ -141,55 +143,96 @@ public class Juego extends InterfaceJuego {
 				}
 			}
 		}
+
 		
+		//Colision Rasengan(Verificacion)	
 		for (int i = 0; i < ninjas.length; i++) {
+			double a =  ninjas[i].getDireccion();
             if(ninjas[i]!=null && rasengan[0]!=null) {
                     if(ninjas[i].colisionRasengan(rasengan[0],ninjas[i])==true) {
 
                         rasengan[0]=null;
+
                         ninjas[i]=null;
+
+                        ninjas[i]=null;       
+
                         
                     }
-                }
+                    if(ninjas[i] == null) {
+                    	if(a == 1) {
+                    		ninjas[i] = new Ninja(2, 20*29, 10, 10, 4, 1);
+                    		ninjas[i].Dibujarse(entorno);
+               		 		
+               	 }else if(a ==2) {
+                    	  ninjas[i] = new Ninja(800, 20*10, 10, 10,2,2);
+                    	  ninjas[i].Dibujarse(entorno);
+             		 	  System.out.println(ninjas[i]);
+                }else if(a ==3) {
+                     	 ninjas[i] = new Ninja(40*10, 10, 10, 10, 2,3 );
+                         ninjas[i].Dibujarse(entorno);
+                         
+               }
+                 else if(a ==4) {
+                         ninjas[i] = new Ninja(18*10, 20*30, 10, 10, 2,4 );
+                         ninjas[i].Dibujarse(entorno); 
+                         
+                  	 }
+               }
             }
-		}			
+		}
+		
+		//Verificacion de colsion Ninja Sakura
+				for (int i = 0; i < ninjas.length; i++) {
+					if(ninjas[i]!=null && sakura!=null) {
+						if(ninjas[i].colisionSakura(sakura,ninjas[i])==true) {
+							entorno.dispose();
+						}
+					}
+				}
+		
+	}
 	
 	//Retorna la casaObj ademas de cambiar el valor de la variable casaObjtivo en casa a true.
 	public Casa elegirCasaObjetivo(Manzana manzanas[]) {
-		
-			//Eleccion de manzana random
-			Random manzanaObjetivo = new Random();
-			nm = manzanaObjetivo.nextInt(12);
-				
-			//Eleccion de casaObjetivo condicionando != 3 7 11
-			if(nm != 3 && nm != 7 && nm != 11) {
-				Random casaObjetivo = new Random();
-				int co = casaObjetivo.nextInt(3);
-				
-				//Fijado de casaObtivo == true en la casa random elegida
-				manzanas[nm].getCasas(co).setCasaObjetivo(true);
-					
-				//Retorno de casaObjetivo
-				return casaObj = manzanas[nm].getCasas(co);
-					
-			} else {
-				Random casaObjetivo = new Random();
-				int co = 0;
-				int ran = casaObjetivo.nextInt(2) + 1;
-				if(ran == 1) {
-					co = 3;
-				} else {
-					co = 4;
-			}
+		//Eleccion de manzana random
+		Random manzanaObjetivo = new Random();
+		nm = manzanaObjetivo.nextInt(12);
+			
+		//Eleccion de casaObjetivo condicionando != 3 7 11
+		if(nm != 3 && nm != 7 && nm != 11) {
+			Random casaObjetivo = new Random();
+			int co = casaObjetivo.nextInt(3);
 			
 			//Fijado de casaObtivo == true en la casa random elegida
 			manzanas[nm].getCasas(co).setCasaObjetivo(true);
-			
+				
 			//Retorno de casaObjetivo
 			return casaObj = manzanas[nm].getCasas(co);
-					
-			}
-	}
+				
+		} else {
+			Random casaObjetivo = new Random();
+			int co = 0;
+			int ran = casaObjetivo.nextInt(2) + 1;
+			if(ran == 1) {
+				co = 3;
+			} else {
+				co = 4;
+		}
+		
+		//Fijado de casaObtivo == true en la casa random elegida
+		manzanas[nm].getCasas(co).setCasaObjetivo(true);
+		
+		//Retorno de casaObjetivo
+		return casaObj = manzanas[nm].getCasas(co);
+         }
+		
+		
+			
+	} 
+		         
+		
+	
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
