@@ -1,10 +1,8 @@
 package juego;
-
-import java.awt.Color;
 import java.awt.Image;
-
 import entorno.Entorno;
 import entorno.Herramientas;
+
 
 public class Rasengan {
 	private double x;
@@ -19,7 +17,7 @@ public class Rasengan {
 		this.x = x;
 		this.y = y;
 		this.radio = 1;
-		this.velocidad = 5;
+		this.velocidad = 3;
 		this.direccion = dir;
 		imagen4 = Herramientas.cargarImagen(imagen);
 	}

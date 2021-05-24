@@ -1,24 +1,24 @@
 package juego;
 
-import java.awt.Color;
-
+import java.awt.Image;
 import entorno.Entorno;
+import entorno.Herramientas;
 
 public class Marca {
 
 	private double x;
 	private double y;
-	private double diametro;
-	private Color color;
+	private double angulo;
+	private Image arrow;
 	
-	public Marca(double x, double y, double diametro, Color colorin) {
+	public Marca(double x, double y, double angulo) {
 		this.x = x;
 		this.y= y;
-		this.diametro = diametro;
-		this.color = colorin;
+		this.angulo = angulo;
+		arrow = Herramientas.cargarImagen("arrow.png");
 	}
 	
 	public void dibujarMarca(Entorno e) {
-		e.dibujarCirculo(x, y, diametro, color);
+		e.dibujarImagen(arrow, x, y, angulo);
 	}
 }

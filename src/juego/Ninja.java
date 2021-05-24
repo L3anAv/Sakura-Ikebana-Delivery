@@ -4,11 +4,8 @@
 package juego;
 
 import java.awt.Color;
-import java.awt.Image;
 
 import entorno.Entorno;
-import entorno.Herramientas;
-
 public class Ninja {
 	private double x;
     private double y;
@@ -17,8 +14,16 @@ public class Ninja {
     private double velocidad;
     private int direccion;
 
-    
-    
+	Ninja(double x, double y, double ancho, double alto, double velocidad,int dir){
+    	this.x = x;
+    	this.y = y;
+    	this.alto = alto;
+    	this.ancho = ancho;
+    	this.velocidad = velocidad;
+    	this.direccion = dir;
+    	
+    }
+	
     public double getAlto() {
 		return alto;
 	}
@@ -34,16 +39,6 @@ public class Ninja {
 	public void setAncho(double ancho) {
 		this.ancho = ancho;
 	}
-	
-	Ninja(double x, double y, double ancho, double alto, double velocidad,int dir){
-    	this.x = x;
-    	this.y = y;
-    	this.alto = alto;
-    	this.ancho = ancho;
-    	this.velocidad = velocidad;
-    	this.direccion = dir;
-    	
-    }
 	
 	public double getVelocidad() {
 		return this.velocidad;
