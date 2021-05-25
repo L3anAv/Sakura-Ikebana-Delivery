@@ -16,6 +16,7 @@ public class Juego extends InterfaceJuego {
 	private int nm;
 	private Color color;
 	private Casa casaObj;
+	private int puntaje = 0;
 	
 	
 	public Juego() {
@@ -74,8 +75,18 @@ public class Juego extends InterfaceJuego {
 	
 	public void tick() {
 		
+		//Escribir en pantalla
+		entorno.cambiarFont("Arial", 20, Color.WHITE);
 		
-		// Procesamiento de un instante de tiempo	
+		//Dibujar
+		if(puntaje == 400) {
+			entorno.escribirTexto("Puntaje: " + puntaje, 40, 25);
+			entorno.escribirTexto("Una mas para ganar!", 220, 25);
+		} else {
+			entorno.escribirTexto("Puntaje: " + puntaje, 40, 25);
+		}
+		
+		// Dibujar sakura, control de movimiento y habilidad especial de sakura	
 		sakura.dibujar(entorno);
 		sakura.movimientoRango(entorno,manzanas);
 		sakura.habilidadEspecialRasengan(entorno,manzanas, rasengan, ninjas);
@@ -92,19 +103,21 @@ public class Juego extends InterfaceJuego {
 		
 		//Dibujar ninjas
 		for (int i = 0; i < ninjas.length; i++) {
-
 			if(ninjas[i] != null){
             ninjas[i].Dibujarse(entorno);
             ninjas[i].mover();
             }
 		}
-			
+		
+		
 		// Condicinal para colision de sakura con casaObj
 		if(sakura.colisionCasa(casaObj)) {
 			casaObj.setCasaObjetivo(false);
 			casaObj = elegirCasaObjetivo(manzanas);
 			casaObj.setCasaObjetivo(true);
+			puntaje = puntaje + 100; 
 		}
+		
 		
 		//Dispara el kamehameha enl caso de tocar la barra espaciadora solo 3 veces
 		if (this.entorno.sePresiono(this.entorno.TECLA_ESPACIO)) {
@@ -147,49 +160,30 @@ public class Juego extends InterfaceJuego {
 		
 		//Colision Rasengan(Verificacion)	
 		for (int i = 0; i < ninjas.length; i++) {
-			double a =  ninjas[i].getDireccion();
+			
             if(ninjas[i]!=null && rasengan[0]!=null) {
                     if(ninjas[i].colisionRasengan(rasengan[0],ninjas[i])==true) {
 
                         rasengan[0]=null;
-
                         ninjas[i]=null;
-
-                        ninjas[i]=null;       
-
-                        
+           
                     }
-                    if(ninjas[i] == null) {
-                    	if(a == 1) {
-                    		ninjas[i] = new Ninja(2, 20*29, 10, 10, 4, 1);
-                    		ninjas[i].Dibujarse(entorno);
-               		 		
-               	 }else if(a ==2) {
-                    	  ninjas[i] = new Ninja(800, 20*10, 10, 10,2,2);
-                    	  ninjas[i].Dibujarse(entorno);
-             		 	  System.out.println(ninjas[i]);
-                }else if(a ==3) {
-                     	 ninjas[i] = new Ninja(40*10, 10, 10, 10, 2,3 );
-                         ninjas[i].Dibujarse(entorno);
-                         
-               }
-                 else if(a ==4) {
-                         ninjas[i] = new Ninja(18*10, 20*30, 10, 10, 2,4 );
-                         ninjas[i].Dibujarse(entorno); 
-                         
-                  	 }
-               }
-            }
+            } 
 		}
 		
+		
 		//Verificacion de colsion Ninja Sakura
-				for (int i = 0; i < ninjas.length; i++) {
-					if(ninjas[i]!=null && sakura!=null) {
-						if(ninjas[i].colisionSakura(sakura,ninjas[i])==true) {
-							entorno.dispose();
-						}
+			for (int i = 0; i < ninjas.length; i++) {
+				if(ninjas[i]!=null && sakura!=null) {
+					if(ninjas[i].colisionSakura(sakura,ninjas[i])==true) {
+						entorno.dispose();
 					}
 				}
+			}
+		
+		if(puntaje >= 500) {
+			 entorno.dispose();
+		}
 		
 	}
 	
@@ -226,14 +220,8 @@ public class Juego extends InterfaceJuego {
 		//Retorno de casaObjetivo
 		return casaObj = manzanas[nm].getCasas(co);
          }
-		
-		
-			
 	} 
 		         
-		
-	
-	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		Juego juego = new Juego();

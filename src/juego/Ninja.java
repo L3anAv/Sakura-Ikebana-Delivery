@@ -15,6 +15,7 @@ public class Ninja {
     private int direccion;
     private Image ninja;
     private double angulo;
+
     
 
 	Ninja(double x, double y, double ancho, double alto, double velocidad,int dir){
@@ -157,8 +158,16 @@ public class Ninja {
 			
 		}
 		
+		public void hacerNinja(int i, Ninja[] ninjas) {
+			if(i == 1) {
+				ninjas[1] = new Ninja(800, 20*10, 10, 10,2,2);
+				
+			}
+		}
+		
 	    //Dibuja el ninja en este caso color azul
 	 	public void Dibujarse(Entorno entorno) {
 	    	entorno.dibujarImagen(ninja, x, y, angulo);
 		}
+
 }
