@@ -62,13 +62,42 @@ public class Ninja {
 		this.y = y;
 	}
 	
+	public void generarNinjas(Ninja[] ninjas, Entorno entorno,int i) {
+            ninjas[i].Dibujarse(entorno);
+            ninjas[i].mover();         
+	}
+	
+	public void respawnNinjas(Ninja[] ninjas, Entorno entorno) {
+		for (int i = 0; i < ninjas.length; i++) {
+			if (ninjas[i] !=null) {
+				ninjas[i].generarNinjas(ninjas, entorno, i);
+			}			
+			else{
+                  switch(i) {         
+                  case 0: ninjas[i] = new Ninja(2, 20*29, 10, 10, 2, 1);
+                               break;                              
+                  case 1: ninjas[i] = new Ninja(800, 20*10, 10, 10,2,2);                                
+                          break;
+                  case 2: ninjas[i] = new Ninja(3, 20*20, 10, 10, 2, 1);               
+                          break;
+                  case 3: ninjas[i] = new Ninja(40*10, 10, 10, 10, 2,3 );                             
+                          break;
+                  case 4: ninjas[i] = new Ninja(18*10, 20*30, 10, 10, 2,4 );                                
+                          break;
+                  case 5: ninjas[i] = new Ninja(62*10, 20*30, 10, 10, 2,4 );                              
+                          break;           		             	
+		          } 
+			}                        	
+         }	
+	}
+	
 	//Mueve el ninja
 		public void mover() {
 			if (this.direccion == 1) {
 				moverDerecha();
 			} else if (this.direccion ==2) {
 				moverIzquierda();
-			}if (this.direccion ==3) {
+			}else if (this.direccion ==3) {
 				moverArriba();
 			} else if (this.direccion == 4) {
 				moverAbajo();
@@ -100,7 +129,8 @@ public class Ninja {
 				this.y = 800;
 			}
 			this.y = this.y - this.velocidad;
-		}
+		}		
+		
 		boolean colisionRasengan(Rasengan rasengan, Ninja ninja ) {
 			double posicionSupNinja;
 			double posicionInfNinja;

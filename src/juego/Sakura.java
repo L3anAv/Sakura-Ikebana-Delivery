@@ -30,6 +30,7 @@ public class Sakura {
 	// ---- dibujar sakura ----
 	
 	public void dibujar (Entorno e) {
+
 //		e.dibujarRectangulo(x, y, ancho, alto, 0, color);
 		e.dibujarImagen(sakura, x, y, angulo);
 	}
@@ -70,6 +71,7 @@ public class Sakura {
 		direccion=4; // 4= abajo
 	}
 	public void movimientoRango(Entorno entorno,Manzana[] manzanas) {
+
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA)) {
 			moverDerecha(entorno, manzanas);	
 		}else if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA))  {
@@ -78,6 +80,9 @@ public class Sakura {
 			moverAbajo(entorno,manzanas);
 		}else if (entorno.estaPresionada(entorno.TECLA_ARRIBA)){
 			moverArriba(manzanas);	
+		}else  {
+			direccion=0;
+			
 		}
 	}
 	public boolean movimientoRangoManzanas(Manzana[] manzanas) {
@@ -174,33 +179,16 @@ public class Sakura {
 			if (rasengan[i] != null) {
 				rasengan[i].mover();
 				rasengan[i].Dibujar(entorno);
-				
-				if(rasengan[i].getX() <= 0 || rasengan[i].movimientoRangoManzasRasengan(manzanas, rasengan[i]) ) 
-				{
-					rasengan[i] = null;
-				}
-				else if(rasengan[i].getX()  >= entorno.ancho()|| rasengan[i].movimientoRangoManzasRasengan(manzanas, rasengan[i])) 
-				{
-					rasengan[i] = null;
-				}
-				else if(rasengan[i].getY() <= 0 || rasengan[i].movimientoRangoManzasRasengan(manzanas, rasengan[i])) 
-				{
-					rasengan[i] = null;
-				}
-				else if(rasengan[i].getY()  >= entorno.alto()|| rasengan[i].movimientoRangoManzasRasengan(manzanas, rasengan[i])) 
-				{
-					rasengan[i] = null;
-				}
+				rasengan[i].rangoRasengan(manzanas, rasengan, i, entorno);
 			}
 		}
 		for (int i = 0; i < ninjas.length; i++) {
             if(ninjas[i]!=null && rasengan[0]!=null) {
                     if(ninjas[i].colisionRasengan(rasengan[0],ninjas[i])==true) {
-
                         rasengan[0]=null;
-                        ninjas[i]=null;
-                    }
-                }
+                        ninjas[i]=null;            
+                    }                 
+                }     
             }
 	
      }

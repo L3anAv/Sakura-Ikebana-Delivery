@@ -11,7 +11,7 @@ public class Ramo {
 	private double alto;
 	private Color color;
 	private double movimiento;
-	//private int cantidadFlores=0;
+	private int cantidadFlores=0;
 	
 	public Ramo(double x, double y, double ancho, double alto, Color color, double movimiento) {
 		this.x = x;
@@ -28,10 +28,7 @@ public class Ramo {
 		
 	}
 	public void cantFloresRepartidas() {
-		
-	    // si  sakura colisiono con la casa que tiene que entregar las flores:
-		//this.cantidadFlores+=1;
-		// sino no hacer nada
+		this.cantidadFlores+=1;
 	}
 	
 	
@@ -73,12 +70,7 @@ public class Ramo {
 
 	}
 	}
-	
-	
-	// Ubicaci�n del ramo a buscar (aleatorio en las casas)
-	// cuando esta el personaje lo agarra()
-	// Idem Mov, cercania de x e y del sakura.
-	//
+
 	
 
 

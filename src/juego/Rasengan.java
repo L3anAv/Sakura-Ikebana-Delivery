@@ -17,7 +17,7 @@ public class Rasengan {
 		this.x = x;
 		this.y = y;
 		this.radio = 1;
-		this.velocidad = 3;
+		this.velocidad = 5;
 		this.direccion = dir;
 		imagen4 = Herramientas.cargarImagen(imagen);
 	}
@@ -49,11 +49,14 @@ public class Rasengan {
 	
 	//---Movimiento del Rasengan----
 	public void mover() {
-		if (this.direccion == 1) {
+		if(this.direccion == 0 ) {
+			moverIzquierda();
+		}
+	    else if (this.direccion == 1) {
 			moverDerecha();
 		} else if (this.direccion ==2) {
 			moverIzquierda();
-		}if (this.direccion ==4) {
+		}else if (this.direccion ==4) {
 			moverArriba();
 		} else if (this.direccion == 3) {
 			moverAbajo();
@@ -125,7 +128,26 @@ public class Rasengan {
 		posicionDerrasengan = rasengan.getX() + rasengan.getRadio();
 											
 		return !(posicionSupManzana > posicionInfrasengan || posicionInfManzana < posicionSuprasengan || posicionIzqManzana > posicionDerrasengan || posicionDerManzana < posicionIzqrasengan);		
-}
+    }
+	
+	public void rangoRasengan(Manzana[] manzanas, Rasengan[] rasengan, int i, Entorno entorno ) {
+		if(rasengan[i].getX() <= 0 || rasengan[i].movimientoRangoManzasRasengan(manzanas, rasengan[i]) ) 
+		{
+			rasengan[i] = null;
+		}
+		else if(rasengan[i].getX()  >= entorno.ancho()|| rasengan[i].movimientoRangoManzasRasengan(manzanas, rasengan[i])) 
+		{
+			rasengan[i] = null;
+		}
+		else if(rasengan[i].getY() <= 0 || rasengan[i].movimientoRangoManzasRasengan(manzanas, rasengan[i])) 
+		{
+			rasengan[i] = null;
+		}
+		else if(rasengan[i].getY()  >= entorno.alto()|| rasengan[i].movimientoRangoManzasRasengan(manzanas, rasengan[i])) 
+		{
+			rasengan[i] = null;
+		}
+	}
 	
 
 	//Dibuja Rasengan
