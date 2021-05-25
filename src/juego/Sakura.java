@@ -37,7 +37,7 @@ public class Sakura {
 	
 	
 	// ---- movimiento de sakura y limites ----
-	public void moverDerecha(Entorno x,Manzana[] manzanas) {
+	private void moverDerecha(Entorno x,Manzana[] manzanas) {
 		if (!(this.x+10+this.ancho/2>x.ancho())) {
 			  this.x+=this.movimiento;			  
 		} if (movimientoRangoManzanas(manzanas)) {
@@ -45,7 +45,7 @@ public class Sakura {
 		}
 		direccion=1; // 1=derecha 
 		}
-	public void moverIzquierda(Manzana[] manzanas) {                              
+	private void moverIzquierda(Manzana[] manzanas) {                              
 
 		if (!(this.x+1-this.ancho<=0)) {
 			this.x-=this.movimiento;
@@ -54,7 +54,7 @@ public class Sakura {
 		}
 		direccion=2; // 2 =izquierda
 		}
-	public void moverArriba(Manzana[] manzanas) {
+	private void moverArriba(Manzana[] manzanas) {
 		if (!(this.y-50-this.alto<0) ) {
 			this.y-=this.movimiento;
 		}if (movimientoRangoManzanas(manzanas)) {
@@ -62,7 +62,7 @@ public class Sakura {
 		}
 		direccion=3;   // 3=Arriba
 	}
-	public void moverAbajo(Entorno x, Manzana[] manzanas) {
+	private void moverAbajo(Entorno x, Manzana[] manzanas) {
 		if (!(this.y+12+this.alto>x.alto())) {
 			  this.y+=this.movimiento;		
 		}if (movimientoRangoManzanas(manzanas)) {
@@ -111,52 +111,44 @@ public class Sakura {
 		return false;
 		 }
 	}	
-    public boolean colisionCasa(Casa a, int nm, Manzana manzanas[]) {
-		if(a.equals(manzanas[nm].getCasas(0)) || a.equals(manzanas[nm].getCasas(1))) {
-			
-			int anchoC1 = 110;
-			int altoC1 = 39;
-			
-			if(this.x-this.ancho/2 < a.getX()+anchoC1/2 && 
-			   this.x+this.ancho/2 > a.getX()-anchoC1/2 && 
-			   this.y-this.alto/2<a.getY()+altoC1/2 &&
-			   this.y+this.alto/2>a.getY()-altoC1/2  ) {
-				return true;
-			}else {
-				return false;
-			}
-			
-		} else if(a.equals(manzanas[nm].getCasas(2))) {
-			
-			int anchoC2 = 40;
-			int altoC2 = 70;
-			
-			if(this.x-this.ancho/2 < a.getX()+anchoC2/2 && 
-			   this.x+this.ancho/2 > a.getX()-anchoC2/2 && 
-			   this.y-this.alto/2<a.getY()+altoC2/2 &&
-			   this.y+this.alto/2>a.getY()-altoC2/2 ) {
-				return true;
-			} else {
-				return false;
-			}
-			
-		} else if(a.equals(manzanas[nm].getCasas(3)) || a.equals(manzanas[nm].getCasas(4))) {
-			
-			int anchoC3 = 70;
-			int altoC3 = 40;
-			
-			if(this.x-this.ancho/2 < a.getX()+anchoC3/2 && 
-			   this.x+this.ancho/2 > a.getX()-anchoC3/2 && 
-			   this.y-this.alto/2<a.getY()+altoC3/2 &&
-			   this.y+this.alto/2>a.getY()-altoC3/2) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		return false;
-	}
+    public boolean colisionCasa(Casa a) {
+
+        if(a.getTipo() == 1) {
+
+            if(this.x-this.ancho/2 < a.getX()+a.getAncho()/2 && 
+               this.x+this.ancho/2 > a.getX()-a.getAncho()/2 && 
+               this.y-this.alto/2<a.getY()+a.getAlto()/2 &&
+               this.y+this.alto/2>a.getY()-a.getAlto()/2) {
+                return true;
+            }else {
+                return false;
+            }
+
+        } else if(a.getTipo() == 2) {
+
+            if(this.x-this.ancho/2 < a.getX()+a.getAncho()/2 && 
+               this.x+this.ancho/2 > a.getX()-a.getAncho()/2 && 
+               this.y-this.alto/2<a.getY()+a.getAlto()/2 &&
+               this.y+this.alto/2>a.getY()-a.getAlto()/2) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } else if(a.getTipo() == 3) {
+
+            if(this.x-this.ancho/2 < a.getX()+a.getAncho()/2 && 
+               this.x+this.ancho/2 > a.getX()-a.getAncho()/2 && 
+               this.y-this.alto/2<a.getY()+a.getAlto()/2 &&
+               this.y+this.alto/2>a.getY()-a.getAlto()/2) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return false;
+    }
     
     //---- sakura en relacion con ninjas y rasengan (habilidad espacial) ----
     public Rasengan disparar() {

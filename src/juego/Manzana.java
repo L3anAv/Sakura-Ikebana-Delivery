@@ -15,10 +15,7 @@ public class Manzana {
 	  private double angulo;
 	  private Color color;
 	  private Casa casas[];
-	  private String imagen1 = "casita-1-larga2.png";
-	  private String imagen2 = "casita-2-chiquita.png";
-	  private String imagen3 = "casa-3-chiquita-izq.png";
-	  private Image plantitas;
+	  private Image plantas;
 	  
 	 //Constructor manzana
 	  public Manzana(double x, double y, int alto, int ancho,double angulo, Color color){
@@ -31,33 +28,30 @@ public class Manzana {
 	        
 	        casas = new Casa[5];
 	        
-	        /*
-	        casas[0] = new Casa(x+40,y-25,40,40,0,Color.BLUE,false);
-	        casas[1] = new Casa(x+40,y+35,40,40,0,Color.RED,false);
-	        casas[2] = new Casa(x-30,y+35,40,40,0,Color.CYAN,false);
-	    	*/
+	        //variable tipo de casa para ajustar marca a la imagen de casa
+	        casas[0] = new Casa(x+65,y-32,0,1,false); 
+	        casas[1] = new Casa(x+65,y+30,0,1,false); 
+	        casas[2] = new Casa(x-35,y+49,0,2,false);
 	        
-	        casas[0] = new Casa(x+65,y-32,0,false,imagen1); 
-	        casas[1] = new Casa(x+65,y+30,0,false,imagen1); 
-	        casas[2] = new Casa(x-35,y+49,0,false,imagen2);
+	        casas[3] = new Casa(x-75,y-32,0,3,false);
+	        casas[4] = new Casa(x-75,y+30,0,3,false);
 	        
-	        casas[3] = new Casa(x-75,y-32,0,false,imagen3);
-	        casas[4] = new Casa(x-75,y+30,0,false,imagen3);
-	        
-	        plantitas = Herramientas.cargarImagen("decoraciones.png");
+	        plantas = Herramientas.cargarImagen("decoraciones.png");
 	        
 	    }
 	  
 	  //Función que dibuja las manzanas con las casas
 	  public void dibujar(Entorno e) {
-
+		  
+		  //Dibujar manzana
 		  e.dibujarRectangulo(x, y, ancho, alto, angulo, color);
+
+		  //Dibujar plantas
+		  e.dibujarImagen(plantas, x-42, y-35, 0);
+		  e.dibujarImagen(plantas, x-42, y-15, 0);
+		  e.dibujarImagen(plantas, x-25, y-15, 0);
 		  
-		  e.dibujarImagen(plantitas, x-42, y-35, 0);
-		  e.dibujarImagen(plantitas, x-42, y-15, 0);
-		  e.dibujarImagen(plantitas, x-25, y-15, 0);
-		  
-		  // Dibujar casas en la manzana.
+		  // Dibujar casas en la manzana
 		  for(int i = 0;i<casas.length;i++) {
 			  if(i != 3 && i != 4) {
 				 casas[i].dibujar(e); 
@@ -68,14 +62,17 @@ public class Manzana {
 	  }
 	  
 	  public void dibujarEsq(Entorno e) {
+		 
+		  //Dibujar mazana
 		  e.dibujarRectangulo(x, y, ancho, alto, angulo, color);
 		  
-		  e.dibujarImagen(plantitas, x+20, y-35, 0);
-		  e.dibujarImagen(plantitas, x-10, y, 0);
-		  e.dibujarImagen(plantitas, x+40, y, 0);
-		  e.dibujarImagen(plantitas, x+20, y+35, 0);
+		  //Dibujar plantas
+		  e.dibujarImagen(plantas, x+20, y-35, 0);
+		  e.dibujarImagen(plantas, x-10, y, 0);
+		  e.dibujarImagen(plantas, x+40, y, 0);
+		  e.dibujarImagen(plantas, x+20, y+35, 0);
 		  
-		  // Dibujar casas en la manzana.
+		  // Dibujar casas en la manzana
 		  for(int i = 0;i<casas.length;i++) {
 			  if(i == 3 || i == 4) {
 				 casas[i].dibujar(e); 
@@ -100,8 +97,7 @@ public class Manzana {
 		}
 
 	  public Casa getCasas(int n) {
-		  	Casa casa = casas[n];
-			return casa;
+			return casas[n];
 		}
 	  
 	}
