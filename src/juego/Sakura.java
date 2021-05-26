@@ -35,7 +35,7 @@ public class Sakura {
 		e.dibujarImagen(sakura, x, y, angulo);
 		e.dibujarImagen(ramo, x-20, y+5, 6);
 	}
-	
+	//h
 	
 	// ---- movimiento de sakura y limites ----
 	private void moverDerecha(Entorno x,Manzana[] manzanas) {
