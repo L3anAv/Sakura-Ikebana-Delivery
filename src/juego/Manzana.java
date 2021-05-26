@@ -25,14 +25,16 @@ public class Manzana {
 	        this.ancho = ancho;
 	        this.angulo = angulo;
 	        this.color = color;
+
+//Casas de la manzana.
 	        
+	        //Decalracion de arreglo de objetos Casa
 	        casas = new Casa[5];
 	        
-	        //variable tipo de casa para ajustar marca a la imagen de casa
+	        //Posiciones del arreglo casas de objetos Casa
 	        casas[0] = new Casa(x+65,y-32,0,1,false); 
 	        casas[1] = new Casa(x+65,y+30,0,1,false); 
 	        casas[2] = new Casa(x-35,y+49,0,2,false);
-	        
 	        casas[3] = new Casa(x-75,y-32,0,3,false);
 	        casas[4] = new Casa(x-75,y+30,0,3,false);
 	        

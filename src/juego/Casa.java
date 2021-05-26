@@ -9,7 +9,7 @@ import entorno.Herramientas;
 
 public class Casa {
 	
-	private double x;
+	  private double x;
 	  private double y;
 	  private int alto; 
 	  private int ancho;
@@ -21,9 +21,7 @@ public class Casa {
 	  private String casa2 = "casita-2-chiquita.png";
 	  private String casa3 = "casa-3-chiquita-izq.png";
 	  private boolean casaObjetivo;
-	  
-	 
-	 
+	   
 	public Casa(double x, double y, double angulo,int tipo, boolean casaObjetivo) {
 		
 		this.x = x;
@@ -58,7 +56,6 @@ public class Casa {
 		e.dibujarImagen(casa, x, y, angulo);
 		
 		//condicional para dibujar marca en casaObj
-		//Falta Imagen flechita
 		if(casaObjetivo == true && this.tipo == 1) {
 			marca = new Marca(x-10,y,-33);
 			marca.dibujarMarca(e);
@@ -72,10 +69,11 @@ public class Casa {
 		
 	}
 	
+	/*
 	public boolean isCasaObjetivo() {
 		return casaObjetivo;
 	}
-
+   */
 	public void setCasaObjetivo(boolean casaObjetivo) {
 		this.casaObjetivo = casaObjetivo;
 	}
@@ -99,8 +97,5 @@ public class Casa {
 	public double getY() {
 		return y;
 	}
-
-	
-	
 	  
 }
