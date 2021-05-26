@@ -10,7 +10,7 @@ public class Rasengan {
 	private double y;
 	private double radio;
 	private double velocidad;
-	private int direccion;
+	private int direccion;	
 	private Image imagen4;
 	
 	
@@ -23,64 +23,43 @@ public class Rasengan {
 		imagen4 = Herramientas.cargarImagen(imagen);
 	}
 	
-	public double getX() {
-		return x;
-	}
 
-	public void setX(double x) {
-		this.x = x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public void setY(double y) {
-		this.y = y;
-	}
-
-	public double getRadio() {
-		return radio;
-	}
-
-	public void setRadio(double radio) {
-		this.radio = radio;
-	}
-	
-	
 	//---Movimiento del Rasengan----
 	public void mover() {
-		if(this.direccion == 0) {
+		 if(this.direccion == 0 ) {			
 			moverDerecha();
-		}
-		else if (this.direccion == 1) {
-			moverDerecha();
-		} else if (this.direccion == 2) {
+		} else if (this.direccion == 1) {
+			moverDerecha();	
+		} else if (this.direccion ==2) {
 			moverIzquierda();
-		}else if (this.direccion == 4) {
-			moverArriba();
-		} else if (this.direccion == 3) {
+		}else if (this.direccion == 3) {
 			moverAbajo();
-		}
+		} else if (this.direccion == 4) {
+			moverArriba();			
+		} 
 	}
+	
 	private void moverDerecha() {
 		if(this.x >= 800) {
 			this.x = 0;
 		}
 		this.x = this.x + this.velocidad;
 	}
+	
 	private void moverIzquierda() {
 		if(this.x <= 0) {
 			this.x = 800;
 		}
 		this.x = this.x - this.velocidad;
 	}
+	
 	private void moverArriba() {
 		if(this.y >= 800) {
 			this.y = 0;
 		}
 		this.y = this.y + this.velocidad;
 	}
+	
 	private void moverAbajo() {
 		if(this.y <= 0) {
 			this.y = 800;
@@ -90,7 +69,7 @@ public class Rasengan {
 	
 	//---- Colision y rango de movimiento ----
 	
-	public boolean  movimientoRangoManzasRasengan(Manzana[] manzanas, Rasengan rasengan) {
+	private boolean  movimientoRangoManzasRasengan(Manzana[] manzanas, Rasengan rasengan) {
 		int cont=0;
 		for (int i=0 ; i<manzanas.length;i++) {
 			if (colisionRasenganManzana(rasengan, manzanas[i])==true) { //modificar x e y si hay problemas de rango...
@@ -105,8 +84,9 @@ public class Rasengan {
 			return false;
 		}
 
-       }	
-	public boolean colisionRasenganManzana(Rasengan rasengan, Manzana manzana ) {
+       }
+ 
+	private boolean colisionRasenganManzana(Rasengan rasengan, Manzana manzana ) {
 		double posicionSupManzana;
 		double posicionInfManzana;
 		double posicionIzqManzana;
@@ -155,5 +135,16 @@ public class Rasengan {
 	public void Dibujar(Entorno entorno) {
 		entorno.dibujarImagen(imagen4, x, y, radio);
 		}
+	
+	// getters
+	public double getX() {
+		return x;
+	}
+	public double getY() {
+		return y;
+	}
+	public double getRadio() {
+		return radio;
+	}
 	
 }

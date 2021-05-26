@@ -58,6 +58,7 @@ public class Juego extends InterfaceJuego {
 		manzanas[10] = new Manzana(70+440,60+430,120,180, 0,color);
 		manzanas[11] = new Manzana(70+658,60+430,120,180, 0,color); // Hasta aca las de Abajo
 		
+
 		//Posiciones de arreglo Ninjas  
 		ninjas[0] = new Ninja(0, 20*29, 2, 1);//ninja calle abajo
 		ninjas[1] = new Ninja(800, 20*10,2,2);//ninja calle 2
@@ -66,6 +67,9 @@ public class Juego extends InterfaceJuego {
 		ninjas[4] = new Ninja(18*10,20*30,2,4 );//ninja calle 4,entre manzana 1 y 2 -- este
 		ninjas[5] = new Ninja(62*10,20*30,2,4 );//ninja calle 4,entre manzana 3 y 4
 		ninjas[6] = new Ninja (0,0,0,0); // Ninja base invisible
+
+
+
 
 //Primer eleccion de casaObj	
 		
@@ -97,11 +101,13 @@ public class Juego extends InterfaceJuego {
 			entorno.escribirTexto("Ninjas eliminados: " + sakura.getcontNinjaElim(), 575, 25);
 		}
 		
+
 		
  		
 //Dibujadores
 		
 		// Dibujar sakura, control de movimiento y habilidad especial de sakura	
+		// Procesamiento de un instante de tiempo
 		sakura.dibujar(entorno);
 		sakura.movimientoRango(entorno,manzanas);
 		sakura.habilidadEspecialRasengan(entorno,manzanas, rasengan, ninjas);
@@ -114,9 +120,10 @@ public class Juego extends InterfaceJuego {
 				manzanas[i].dibujarEsq(entorno);
 			}
 
+
 		};
 	
-		//Dibujo y reaparicion de ninjas
+		// dibujo y respawneo de ninjas
 		ninjas[6].respawnNinjas(ninjas, entorno);
 		
 		
@@ -131,17 +138,7 @@ public class Juego extends InterfaceJuego {
 			puntaje = puntaje + 5; 
 		}
 
-		//Dispara el Rasengan
-		//Se dispara tocando: La barra espaciadora
-		if (this.entorno.sePresiono(this.entorno.TECLA_ESPACIO)) {
-			boolean dispararRasengan = false;
-			for (int i = 0; i < rasengan.length && !dispararRasengan; i++) {
-				if (rasengan[i] == null) {
-					rasengan[i] = this.sakura.disparar();
-					dispararRasengan = true;
-				}
-			}
-		}
+  
 		 
 		//Verificacion de colsion Ninja Sakura
 		//Si colisiona, se cierra el juego.
@@ -163,8 +160,9 @@ public class Juego extends InterfaceJuego {
 			entorno.escribirTexto("¡Ganaste el juego!", 220, 300);
 		}
 		
-		
 }
+		
+
 
 //Metodo de seleccion aleatoria de casaObj
 	
