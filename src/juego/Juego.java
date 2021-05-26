@@ -51,7 +51,7 @@ public class Juego extends InterfaceJuego {
 		ninjas[3] = new Ninja(40*10, 10, 10, 10, 2,3 );//ninja calle 1,entre manzana 2 y 3
 		ninjas[4] = new Ninja(18*10, 20*30, 10, 10, 2,4 );//ninja calle 4,entre manzana 1 y 2
 		ninjas[5] = new Ninja(62*10, 20*30, 10, 10, 2,4 );//ninja calle 4,entre manzana 3 y 4
-		ninjas[6] = new Ninja (0,0,0,0,0,0);
+		ninjas[6] = new Ninja (0,0,0,0,0,0); // ninja utilizable
 
 
 		
@@ -74,7 +74,7 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 		
 		
-		// Procesamiento de un instante de tiempo	
+		// Procesamiento de un instante de tiempo
 		sakura.dibujar(entorno);
 		sakura.movimientoRango(entorno,manzanas);
 		sakura.habilidadEspecialRasengan(entorno,manzanas, rasengan, ninjas);
@@ -87,7 +87,9 @@ public class Juego extends InterfaceJuego {
 			} else {
 				manzanas[i].dibujarEsq(entorno);
 			}
-		}	
+		}
+		
+		// dibujo y respawneo de ninjas
 		ninjas[6].respawnNinjas(ninjas, entorno);
 						
 						 	

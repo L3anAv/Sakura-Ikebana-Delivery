@@ -1,8 +1,6 @@
 //Falta Mover hacia abajo y arriba al ninja y que dispare la estrella ninja y colision con sakura
 
 package juego;
-
-import java.awt.Color;
 import java.awt.Image;
 import entorno.Entorno;
 import entorno.Herramientas;
@@ -19,7 +17,7 @@ public class Ninja {
 
 
 
-    Ninja(double x, double y, double ancho, double alto, double velocidad,int dir){
+    public Ninja(double x, double y, double ancho, double alto, double velocidad,int dir){
         this.x = x;
         this.y = y;
         this.alto = 10;
@@ -30,47 +28,8 @@ public class Ninja {
         this.direccion = dir;
 
     }
-    
-    
-    public double getAlto() {
-		return alto;
-	}
-
-	public void setAlto(double alto) {
-		this.alto = alto;
-	}
-
-	public double getAncho() {
-		return ancho;
-	}
-
-	public void setAncho(double ancho) {
-		this.ancho = ancho;
-	}
-	
-	
-	
-	public double getVelocidad() {
-		return this.velocidad;
-	}
-
-	public double getX() {
-		return this.x;
-	}
-
-	public double getY() {
-		return this.y;
-	}
-	
-	public void setX(double x) {
-		this.x = x;
-	}
-
-	public void setY(double y) {
-		this.y = y;
-	}
-	
-	public void generarNinjas(Ninja[] ninjas, Entorno entorno,int i) {
+     	
+	private void generarNinjas(Ninja[] ninjas, Entorno entorno,int i) {
             ninjas[i].Dibujarse(entorno);
             ninjas[i].mover();         
 	}
@@ -82,7 +41,7 @@ public class Ninja {
 			else{
                   switch(i) {         
                   case 0: ninjas[i] = new Ninja(2, 20*29, 10, 10, 2, 1);
-                               break;                              
+                          break;                              
                   case 1: ninjas[i] = new Ninja(800, 20*10, 10, 10,2,2);                                
                           break;
                   case 2: ninjas[i] = new Ninja(3, 20*20, 10, 10, 2, 1);               
@@ -98,7 +57,7 @@ public class Ninja {
          }	
 	}
 	
-	//Mueve el ninja
+	    //Mueve el ninja
 		public void mover() {
 			if (this.direccion == 1) {
 				moverDerecha();
@@ -108,8 +67,7 @@ public class Ninja {
 				moverArriba();
 			} else if (this.direccion == 4) {
 				moverAbajo();
-			}
-			
+			} 		
 		}
 		//Mueve el ninja hacia la derecha en caso que corresponda
 		private void moverDerecha() {
@@ -138,7 +96,7 @@ public class Ninja {
 			this.y = this.y - this.velocidad;
 		}		
 		
-		boolean colisionRasengan(Rasengan rasengan, Ninja ninja ) {
+	   public boolean colisionRasengan(Rasengan rasengan, Ninja ninja ) {
 			double posicionSupNinja;
 			double posicionInfNinja;
 			double posicionIzqNinja;
@@ -161,8 +119,8 @@ public class Ninja {
 			posicionDerrasengan = rasengan.getX() + rasengan.getRadio();
 												
 			return !(posicionSupNinja > posicionInfrasengan || posicionInfNinja < posicionSuprasengan || posicionIzqNinja > posicionDerrasengan || posicionDerNinja < posicionIzqrasengan);		
-	}
-		boolean colisionSakura(Sakura sakura , Ninja ninjas) {
+	    }
+	    public boolean colisionSakura(Sakura sakura , Ninja ninjas) {
             double posicionSupSakura;
             double posicionInfSakura;
             double posicionIzqSakura;
@@ -190,5 +148,23 @@ public class Ninja {
 	 	public void Dibujarse(Entorno entorno) {
 	 		entorno.dibujarImagen(ninja, x, y, angulo);
 		}
+	 	// getters
+	 	
+	 	 public double getAlto() {
+	 		return alto;
+	 	}
+	 	public double getAncho() {
+	 		return ancho;
+	 	}
+
+	 	public double getVelocidad() {
+	 		return this.velocidad;
+	 	}
+	 	public double getX() {
+	 		return this.x;
+	 	}
+	 	public double getY() {
+	 		return this.y;
+	 	}
 	
 }
