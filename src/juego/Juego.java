@@ -18,6 +18,7 @@ public class Juego extends InterfaceJuego {
 	private Color color;
 	private Casa casaObj;
 	private int puntaje = 0;
+	private int contNinjaElim;
 	
 	public Juego() {
 
@@ -35,7 +36,7 @@ public class Juego extends InterfaceJuego {
 		
 		//Arreglos de objetos
 		manzanas = new Manzana[12];
-	 	ninjas = new Ninja[7];
+	 	ninjas = new Ninja[6];
 	 	
 //Variable de color en hexadecimal
 	 	
@@ -65,7 +66,6 @@ public class Juego extends InterfaceJuego {
 		ninjas[3] = new Ninja(40*10,40,2,3 );//ninja calle 1,entre manzana 2 y 3
 		ninjas[4] = new Ninja(18*10,20*30,2,4 );//ninja calle 4,entre manzana 1 y 2 -- este
 		ninjas[5] = new Ninja(62*10,20*30,2,4 );//ninja calle 4,entre manzana 3 y 4
-		ninjas[6] = new Ninja (0,0,0,0); // Ninja base invisible
 
 //Primer eleccion de casaObj	
 		
@@ -90,11 +90,11 @@ public class Juego extends InterfaceJuego {
 		//Aviso de cuando le falta 1 entrega para ganar!
 		if(puntaje >= 15) {    
 			entorno.escribirTexto("Puntaje: " + puntaje, 35, 25);
-			entorno.escribirTexto("Ninjas eliminados: " + sakura.getcontNinjaElim(), 575, 25);
+			entorno.escribirTexto("Ninjas eliminados: " + contNinjaElim, 575, 25);
 			entorno.escribirTexto("¡Una entrega mas para ganar!", 210, 25);
 		} else {   
 			entorno.escribirTexto("Puntaje: " + puntaje, 35, 25);
-			entorno.escribirTexto("Ninjas eliminados: " + sakura.getcontNinjaElim(), 575, 25);
+			entorno.escribirTexto("Ninjas eliminados: " + contNinjaElim, 575, 25);
 		}
 				
 //Dibujadores
@@ -103,7 +103,6 @@ public class Juego extends InterfaceJuego {
 		// Procesamiento de un instante de tiempo
 		sakura.dibujar(entorno);
 		sakura.movimientoRango(entorno,manzanas);
-		sakura.habilidadEspecialRasengan(entorno,manzanas, rasengan, ninjas);
 		
 		//Dibujar manzanas en entorno segun si es 3, 7 o 11 || si es 3, 7 o 11 le dibuja 2 casas 
 		for(int i=0;i<manzanas.length;i++) {
@@ -115,11 +114,50 @@ public class Juego extends InterfaceJuego {
 		}
 		
 	
-		// dibujo y respawneo de ninjas
-		ninjas[6].respawnNinjas(ninjas, entorno);
-		
+		// dibujo de ninjas
+				 		
+	    Ninja.generarNinjas(ninjas, entorno);
+	    
+	    //creacion del rasengan apartir de cordenas del sakura
+	    
+	    if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {  
+			boolean dispararRasengan = false;
+			for (int i = 0; i < rasengan.length && !dispararRasengan; i++) {
+				if (rasengan[i] == null) 
+				{
+					rasengan[i] = sakura.sakuraDisparar();   // crea el rasengan
+					dispararRasengan = true;
+				}
+			}
+		}
+	    //dibujador, movimiento y rango del raasengan
+	    for (int i = 0; i < rasengan.length; i++) {
+			if (rasengan[i] != null) {   
+				rasengan[i].mover();            
+				rasengan[i].Dibujar(entorno);   
+				rasengan[i].rangoRasengan(manzanas, rasengan, i, entorno); 
+			}
+		}
+	    
+//respawn de los ninjas
+	    
+		Ninja.respawnNinjas(ninjas, entorno);
+				
 		
 //Colisiones
+		//creacion de Rasengan
+			
+		
+		// colision Rasengan - Ninjas
+		for (int i = 0; i < ninjas.length; i++) {
+            if(ninjas[i]!=null && rasengan[0]!=null) {
+                    if(ninjas[i].colisionRasengan(rasengan[0],ninjas[i])==true) {  
+                        rasengan[0]=null;
+                        ninjas[i]=null;
+                        contNinjaElim+=1;
+                    }                 
+                }     
+            }
 		
 		// Condicinal para colision de sakura con casaObj
 		//Asignacion de puntos por llegada a casaObj y Reseteo de casaObj

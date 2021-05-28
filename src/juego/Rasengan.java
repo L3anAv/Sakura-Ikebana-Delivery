@@ -26,9 +26,9 @@ public class Rasengan {
 
 	//---Movimiento del Rasengan----
 	public void mover() {
-		 if(this.direccion == 0 ) {	 		
+		 if(this.direccion == 0 ) {	  //en caso de que no haya tocado nininguna letra se tira a la derecha		
 			moverDerecha();
-		} else if (this.direccion == 1) {
+		} else if (this.direccion == 1) {   // direccion = a la direccion del sakura.
 			moverDerecha();	
 		} else if (this.direccion ==2) {
 			moverIzquierda();
@@ -39,21 +39,21 @@ public class Rasengan {
 		} 
 	}
 	
-	private void moverDerecha() {
+	private void moverDerecha() {  //incrementa x
 		if(this.x >= 800) { 
 			this.x = 0;
 		}
-		this.x+=this.velocidad;  
+		this.x+=this.velocidad;   
 	}
 	
-	private void moverIzquierda() {
+	private void moverIzquierda() {   //decrementa x
 		if(this.x <= 0) {
 			this.x = 800;
 		}
 		this.x-=this.velocidad; 
 	}
 	
-	private void moverArriba() {
+	private void moverArriba() {  // aumenta y
 		if(this.y >= 800) {
 			this.y = 0;
 		}
@@ -64,7 +64,7 @@ public class Rasengan {
 		if(this.y <= 0) {
 			this.y = 800;
 		}
-		this.y-=this.velocidad; 
+		this.y-=this.velocidad;   //disminuye y
 	}
 	
 	//---- Colision y rango de movimiento ----

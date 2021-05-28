@@ -30,16 +30,19 @@ public class Ninja {
 
     }
      	
-	private void generarNinjas(Ninja[] ninjas, Entorno entorno,int i) {
-            ninjas[i].Dibujarse(entorno);   
-            ninjas[i].mover();         
-	}
-	public void respawnNinjas(Ninja[] ninjas, Entorno entorno) {
-		for (int i = 0; i < ninjas.length; i++) {
+	static void generarNinjas(Ninja[] ninjas, Entorno entorno) {
+		
+		for (int i=0; i<ninjas.length;i++) {
 			if (ninjas[i] !=null) {
-				ninjas[i].generarNinjas(ninjas, entorno, i); 
-			}			
-			else{
+            ninjas[i].Dibujarse(entorno);   
+            ninjas[i].mover();               
+		    }
+		}
+	}
+	static void respawnNinjas(Ninja[] ninjas, Entorno entorno) {
+			
+		for (int i = 0; i < ninjas.length; i++) { // busca si hay algun ninja nulo 
+			if (ninjas[i] ==null) {   // en el caso de que si hay algun nulo reecrearlo en el mismo lugar pero mas atras
                   switch(i) {      
                   case 0: ninjas[i] = new Ninja(-500,20*29,2, 1);  
                           break;                              
@@ -55,7 +58,7 @@ public class Ninja {
                           break;           		             	
 		          } 
 			}                        	
-         }	
+		}	
 	}
 	
 	    //Mueve el ninja

@@ -12,7 +12,6 @@ public class Sakura {
 	private int ancho;
 	private int alto;
 	private int direccion;
-	private int contNinjaElim;
 	private Image sakura;
 	private String imagen4 = "rasengan.png";
 	private Image ramo;
@@ -150,41 +149,7 @@ public class Sakura {
     //---- sakura en relacion con ninjas y rasengan (habilidad espacial) ----
     public Rasengan sakuraDisparar() {
 		return new Rasengan(this.x,this.y,direccion,imagen4); 
-	}   
-	public void habilidadEspecialRasengan(Entorno entorno,Manzana[] manzanas, Rasengan[] rasengan,Ninja[] ninjas) {
-		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {  
-			boolean dispararRasengan = false;
-			for (int i = 0; i < rasengan.length && !dispararRasengan; i++) {
-				if (rasengan[i] == null) 
-				{
-					rasengan[i] = sakuraDisparar(); 
-					dispararRasengan = true;
-				}
-			}
-		}
-		
-		//dibuja el rasengan y desaparece segun los limites en X e Y
-		for (int i = 0; i < rasengan.length; i++) {
-			if (rasengan[i] != null) {   
-				rasengan[i].mover();        
-				rasengan[i].Dibujar(entorno);  
-				rasengan[i].rangoRasengan(manzanas, rasengan, i, entorno);   
-			}
-		}
-		
-		for (int i = 0; i < ninjas.length; i++) {
-            if(ninjas[i]!=null && rasengan[0]!=null) {
-                    if(ninjas[i].colisionRasengan(rasengan[0],ninjas[i])==true) {  
-                        rasengan[0]=null;
-                        ninjas[i]=null;
-                        contNinjaElim = contNinjaElim  + 1;
-                    }                 
-                }     
-            }
-	
-     }
-	// ---- getters ----						
-	
+	}   					
     public double getX() {
 		return this.x;
 	}
@@ -207,10 +172,6 @@ public class Sakura {
 	
 	public double getMovimiento() {
 		return this.movimiento;
-	}
-	
-	public int getcontNinjaElim() {
-		return contNinjaElim;
 	}
 
 }
