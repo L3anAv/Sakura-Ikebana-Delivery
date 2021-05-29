@@ -23,8 +23,8 @@ public class Sakura {
 		this.angulo = angulo;
 		ramo= Herramientas.cargarImagen("flores.png");
 		sakura = Herramientas.cargarImagen("sakura-chibi.png");
-		this.alto=10;
-		this.ancho=15;
+		this.alto=30;
+		this.ancho=25;
 		this.movimiento=movimiento;
 	}
 	// ---- dibujar sakura ----
