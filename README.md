@@ -2,7 +2,8 @@
 
 :round_pushpin: _Trabajo Práctico Universitario._
 
-Desarollo en conjunto con compañeros de la universidad. Realizado para Programación I (**[UNGS](https://www.ungs.edu.ar/)**).
+Desarollo en conjunto con compañeros de la universidad. 
+Realizado para Programación I (**[UNGS](https://www.ungs.edu.ar/)**).
 
 ## <ins>**Sobre el proyecto**</ins>
 
